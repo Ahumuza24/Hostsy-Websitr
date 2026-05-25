@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-roboto);
-  --font-heading: var(--font-roboto);
+  --font-sans: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+  --font-heading: "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);

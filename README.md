@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hostsy Website
+
+Premium corporate housing website built with Next.js, React, Tailwind CSS, and Framer Motion.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Netlify Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project includes `netlify.toml` with the production build settings Netlify expects for a modern Next.js app:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Base directory: `website` if connecting the parent `HOSTSY` folder, otherwise leave blank if connecting this folder as the repository root.
+- Build command: `npm run build`
+- Publish directory: `.next`
+- Node version: `20`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Netlify applies the current OpenNext adapter automatically for supported Next.js versions, so this project does not pin `@netlify/plugin-nextjs`.
 
-## Deploy on Vercel
+## Deployment Checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Confirm the production domain in `src/app/layout.tsx` metadata before launch.
+- Keep Hostsy logo and hero assets in `public/` so they are bundled with the deploy.
+- Run `npm run build` locally before pushing a client presentation version.

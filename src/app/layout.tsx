@@ -1,15 +1,7 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700", "900"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -43,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} h-full`}>
+    <html lang="en" className="h-full">
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Navbar />
         <main className="flex-1">{children}</main>
