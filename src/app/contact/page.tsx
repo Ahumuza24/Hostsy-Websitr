@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import LocalFeedbackForm from "@/components/forms/LocalFeedbackForm";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react";
@@ -40,18 +41,18 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-wrap gap-6 justify-center md:justify-start items-center">
             <a
-              href="tel:+27000000000"
+              href="tel:+27678182968"
               className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm hover:opacity-70 transition-opacity"
             >
               <Phone className="w-4 h-4" />
-              +27 00 000 0000
+              +27 67 818 2968
             </a>
             <a
-              href="mailto:info@hostsy.co.za"
+              href="mailto:admin@hostsy.co.za"
               className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm hover:opacity-70 transition-opacity"
             >
               <Mail className="w-4 h-4" />
-              info@hostsy.co.za
+              admin@hostsy.co.za
             </a>
             <span className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm">
               <Clock className="w-4 h-4" />
@@ -88,10 +89,10 @@ export default function ContactPage() {
                   <div>
                     <div className="font-semibold text-[#0B1F3E] text-sm">Phone</div>
                     <a
-                      href="tel:+27000000000"
+                      href="tel:+27678182968"
                       className="text-gray-500 text-sm hover:text-[#C8A86C] transition-colors"
                     >
-                      +27 00 000 0000
+                      +27 67 818 2968
                     </a>
                   </div>
                 </div>
@@ -103,10 +104,10 @@ export default function ContactPage() {
                   <div>
                     <div className="font-semibold text-[#0B1F3E] text-sm">Email</div>
                     <a
-                      href="mailto:info@hostsy.co.za"
+                      href="mailto:admin@hostsy.co.za"
                       className="text-gray-500 text-sm hover:text-[#C8A86C] transition-colors"
                     >
-                      info@hostsy.co.za
+                      admin@hostsy.co.za
                     </a>
                   </div>
                 </div>
@@ -132,7 +133,7 @@ export default function ContactPage() {
                   For urgent placements or quick questions, message us on WhatsApp.
                 </p>
                 <a
-                  href="https://wa.me/27000000000"
+                  href="https://wa.me/27678182968"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -153,7 +154,7 @@ export default function ContactPage() {
                 <Link href="/landlords#partner-form">
                   <Button
                     variant="outline"
-                    className="w-full border-[#C8A86C]/50 text-[#C8A86C] hover:bg-[#C8A86C]/10 text-sm"
+                    className="w-full border-[#C8A86C]/50 bg-transparent text-[#C8A86C] hover:bg-[#C8A86C] hover:text-[#0B1F3E] text-sm"
                   >
                     Submit a Property
                     <ArrowRight className="ml-2 w-3 h-3" />
@@ -173,9 +174,11 @@ export default function ContactPage() {
                 </h2>
               </div>
 
-              <form
+              <LocalFeedbackForm
                 id="request"
                 className="space-y-5 bg-gray-50 border border-gray-100 rounded-2xl p-8"
+                successTitle="Requirement received."
+                successMessage="Thanks. The form is working and would route this request to the Hostsy team in production. For the presentation, no data is stored."
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
@@ -185,7 +188,7 @@ export default function ContactPage() {
                     >
                       Full Name *
                     </label>
-                    <Input id="c-name" placeholder="Your full name" required />
+                    <Input id="c-name" name="name" placeholder="Your full name" required />
                   </div>
                   <div>
                     <label
@@ -194,7 +197,7 @@ export default function ContactPage() {
                     >
                       Company Name *
                     </label>
-                    <Input id="c-company" placeholder="Your company" required />
+                    <Input id="c-company" name="company" placeholder="Your company" required />
                   </div>
                 </div>
 
@@ -206,7 +209,7 @@ export default function ContactPage() {
                     >
                       Work Email *
                     </label>
-                    <Input id="c-email" type="email" placeholder="you@company.com" required />
+                    <Input id="c-email" name="email" type="email" placeholder="you@company.com" required />
                   </div>
                   <div>
                     <label
@@ -215,7 +218,7 @@ export default function ContactPage() {
                     >
                       Phone Number *
                     </label>
-                    <Input id="c-phone" type="tel" placeholder="+27 00 000 0000" required />
+                    <Input id="c-phone" name="phone" type="tel" placeholder="+27 67 818 2968" required />
                   </div>
                 </div>
 
@@ -229,6 +232,7 @@ export default function ContactPage() {
                     </label>
                     <Input
                       id="c-location"
+                      name="location"
                       placeholder="e.g. Waterkloof, Pretoria"
                       required
                     />
@@ -242,6 +246,7 @@ export default function ContactPage() {
                     </label>
                     <Input
                       id="c-bedrooms"
+                      name="bedrooms"
                       type="number"
                       placeholder="e.g. 2"
                       min="1"
@@ -258,7 +263,7 @@ export default function ContactPage() {
                     >
                       Move-In Date *
                     </label>
-                    <Input id="c-checkin" type="date" required />
+                    <Input id="c-checkin" name="moveInDate" type="date" required />
                   </div>
                   <div>
                     <label
@@ -267,7 +272,7 @@ export default function ContactPage() {
                     >
                       Estimated Duration *
                     </label>
-                    <Input id="c-duration" placeholder="e.g. 3 months" required />
+                    <Input id="c-duration" name="duration" placeholder="e.g. 3 months" required />
                   </div>
                 </div>
 
@@ -280,6 +285,7 @@ export default function ContactPage() {
                   </label>
                   <Input
                     id="c-employees"
+                    name="employees"
                     placeholder="e.g. 1 executive, or 4-person team"
                   />
                 </div>
@@ -293,6 +299,7 @@ export default function ContactPage() {
                   </label>
                   <Textarea
                     id="c-notes"
+                    name="notes"
                     placeholder="Any specific requirements — location preferences, budget range, special needs, etc."
                     rows={4}
                   />
@@ -309,7 +316,7 @@ export default function ContactPage() {
                 <p className="text-gray-400 text-xs text-center">
                   We respond within 4 business hours. All enquiries are treated confidentially.
                 </p>
-              </form>
+              </LocalFeedbackForm>
             </div>
           </div>
         </div>

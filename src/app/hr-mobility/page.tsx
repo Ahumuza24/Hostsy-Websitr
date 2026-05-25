@@ -113,6 +113,7 @@ export default function HRMobilityPage() {
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
             alt="Modern corporate office"
             fill
+            sizes="100vw"
             className="object-cover opacity-15"
             priority
           />
@@ -141,7 +142,10 @@ export default function HRMobilityPage() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-8">
+              <Button
+                variant="outline"
+                className="border-white/35 bg-transparent px-8 text-white hover:bg-white hover:text-[#0B1F3E]"
+              >
                 Talk to Our Team
               </Button>
             </Link>

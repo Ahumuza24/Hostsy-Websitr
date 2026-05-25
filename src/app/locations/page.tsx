@@ -83,6 +83,7 @@ export default function LocationsPage() {
             src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?auto=format&fit=crop&w=1920&q=80"
             alt="Gauteng skyline"
             fill
+            sizes="100vw"
             className="object-cover opacity-20"
             priority
           />

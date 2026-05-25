@@ -44,6 +44,7 @@ export default function AboutPage() {
             src="https://images.unsplash.com/photo-1560185127-6a7aa2f02bff?auto=format&fit=crop&w=1920&q=80"
             alt="Executive apartment interior"
             fill
+            sizes="100vw"
             className="object-cover opacity-15"
             priority
           />

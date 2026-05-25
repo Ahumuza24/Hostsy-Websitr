@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import LocalFeedbackForm from "@/components/forms/LocalFeedbackForm";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -118,6 +119,7 @@ export default function LandlordsPage() {
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80"
             alt="Modern apartment building"
             fill
+            sizes="100vw"
             className="object-cover opacity-15"
             priority
           />
@@ -279,7 +281,11 @@ export default function LandlordsPage() {
             </p>
           </div>
 
-          <form className="space-y-5 bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <LocalFeedbackForm
+            className="space-y-5 bg-gray-50 border border-gray-100 rounded-2xl p-8"
+            successTitle="Property details received."
+            successMessage="Thanks. The form is working and would route this property lead to Hostsy in production. For the presentation, no data is stored."
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label
@@ -288,7 +294,7 @@ export default function LandlordsPage() {
                 >
                   Full Name *
                 </label>
-                <Input id="p-name" placeholder="Your full name" required />
+                <Input id="p-name" name="name" placeholder="Your full name" required />
               </div>
               <div>
                 <label
@@ -297,7 +303,7 @@ export default function LandlordsPage() {
                 >
                   Email Address *
                 </label>
-                <Input id="p-email" type="email" placeholder="you@email.com" required />
+                <Input id="p-email" name="email" type="email" placeholder="you@email.com" required />
               </div>
             </div>
 
@@ -308,7 +314,7 @@ export default function LandlordsPage() {
               >
                 Phone Number *
               </label>
-              <Input id="p-phone" type="tel" placeholder="+27 00 000 0000" required />
+              <Input id="p-phone" name="phone" type="tel" placeholder="+27 67 818 2968" required />
             </div>
 
             <div>
@@ -318,7 +324,7 @@ export default function LandlordsPage() {
               >
                 Property Address / Area *
               </label>
-              <Input id="p-address" placeholder="e.g. Waterkloof, Pretoria" required />
+              <Input id="p-address" name="address" placeholder="e.g. Waterkloof, Pretoria" required />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -329,7 +335,7 @@ export default function LandlordsPage() {
                 >
                   Number of Bedrooms *
                 </label>
-                <Input id="p-bedrooms" placeholder="e.g. 2" type="number" min="1" required />
+                <Input id="p-bedrooms" name="bedrooms" placeholder="e.g. 2" type="number" min="1" required />
               </div>
               <div>
                 <label
@@ -338,7 +344,7 @@ export default function LandlordsPage() {
                 >
                   Furnished Status *
                 </label>
-                <Input id="p-furnished" placeholder="Fully / Partly / Unfurnished" required />
+                <Input id="p-furnished" name="furnishedStatus" placeholder="Fully / Partly / Unfurnished" required />
               </div>
             </div>
 
@@ -349,7 +355,7 @@ export default function LandlordsPage() {
               >
                 Expected Monthly Rental (ZAR)
               </label>
-              <Input id="p-asking" placeholder="e.g. R 18,000" />
+              <Input id="p-asking" name="expectedRental" placeholder="e.g. R 18,000" />
             </div>
 
             <div>
@@ -361,6 +367,7 @@ export default function LandlordsPage() {
               </label>
               <Textarea
                 id="p-notes"
+                name="notes"
                 placeholder="Tell us anything else about your property..."
                 rows={4}
               />
@@ -377,7 +384,7 @@ export default function LandlordsPage() {
             <p className="text-gray-400 text-xs text-center">
               We&apos;ll respond within 2 business days. All enquiries are treated confidentially.
             </p>
-          </form>
+          </LocalFeedbackForm>
         </div>
       </section>
     </div>

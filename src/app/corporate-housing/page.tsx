@@ -128,6 +128,7 @@ export default function CorporateHousingPage() {
             src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1920&q=80"
             alt="Premium furnished apartment"
             fill
+            sizes="100vw"
             className="object-cover opacity-15"
             priority
           />
