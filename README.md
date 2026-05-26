@@ -13,6 +13,9 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+The default dev server uses webpack for local stability on macOS. To test the
+Turbopack dev server explicitly, run `npm run dev:turbo`.
+
 ## Production Build
 
 ```bash

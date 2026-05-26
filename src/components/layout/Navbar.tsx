@@ -16,7 +16,7 @@ const navLinks = [
   { label: "HR & Mobility", href: "/hr-mobility" },
   { label: "For Landlords", href: "/landlords" },
   { label: "Locations", href: "/locations" },
-  
+  { label: "Gallery", href: "/gallery" },
 ];
 
 export default function Navbar() {

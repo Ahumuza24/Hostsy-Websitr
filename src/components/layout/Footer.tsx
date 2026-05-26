@@ -7,6 +7,7 @@ const companyLinks = [
   { label: "For HR & Mobility Teams", href: "/hr-mobility" },
   { label: "For Landlords", href: "/landlords" },
   { label: "Locations", href: "/locations" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
