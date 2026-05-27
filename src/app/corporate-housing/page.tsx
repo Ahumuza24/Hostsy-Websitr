@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Kicker, CTA, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
+import { Kicker, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
 import Timeline from '@/components/dataviz/Timeline';
 

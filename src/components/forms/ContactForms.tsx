@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Arrow } from '@/components/shared/primitives';
 
 type Tab = 'corporate' | 'landlord' | 'general';
@@ -120,7 +121,7 @@ function SuccessPanel({ tab, onReset }: { tab: Tab; onReset: () => void }) {
       </p>
       <div style={{ marginTop: 40, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
         <button className="btn btn--brass" onClick={onReset}><span>Submit another inquiry</span><Arrow /></button>
-        <a className="btn btn--ghost-ivory" href="/"><span>Back to home</span><Arrow /></a>
+        <Link className="btn btn--ghost-ivory" href="/"><span>Back to home</span><Arrow /></Link>
       </div>
     </div>
   );

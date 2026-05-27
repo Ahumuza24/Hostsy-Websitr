@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Kicker, CTA, Stat, CtaBand, PageHeroBlock } from '@/components/shared/primitives';
+import { Kicker, Stat, CtaBand, PageHeroBlock } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
 
 export const metadata: Metadata = {
@@ -52,7 +52,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, height: 480 }}>
+          <div className="image-triptych reveal-stagger" style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, height: 480 }}>
             <div style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
             <div style={{ backgroundImage: `url(${WORKSPACE_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
             <div style={{ backgroundImage: `url(${BALCONY_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>

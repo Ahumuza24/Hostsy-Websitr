@@ -44,7 +44,7 @@ export default function GautengMap() {
           Two cities. Eight <em>addresses</em>.
         </h2>
         <p style={{ color: 'rgba(241,235,222,0.68)', fontSize: 15, lineHeight: 1.65, margin: '0 0 40px' }}>
-          Pretoria's embassy belt and Johannesburg's financial core, connected by the N1. Every Hostsy apartment sits within 15 minutes of its city's business centre.
+          Pretoria&apos;s embassy belt and Johannesburg&apos;s financial core, connected by the N1. Every Hostsy apartment sits within 15 minutes of its city&apos;s business centre.
         </p>
 
         {/* Legend */}

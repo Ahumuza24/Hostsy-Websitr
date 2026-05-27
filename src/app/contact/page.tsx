@@ -79,14 +79,14 @@ export default function ContactPage() {
           </div>
           <div className="grid-3" style={{ marginTop: 64 }}>
             {DOWNLOADS.map(d => (
-              <a key={d.title} href="#" style={{ border: '1px solid var(--line)', padding: 28, display: 'flex', flexDirection: 'column', gap: 18, justifyContent: 'space-between', minHeight: 280 }}>
+              <div key={d.title} className="download-card" style={{ border: '1px solid var(--line)', padding: 28, display: 'flex', flexDirection: 'column', gap: 18, justifyContent: 'space-between', minHeight: 280 }}>
                 <div>
                   <span className="label label--muted">{d.tag}</span>
                   <h3 className="h-3" style={{ margin: '16px 0 14px' }}>{d.title}</h3>
                   <p style={{ color: 'var(--muted)', margin: 0, fontSize: 14.5, lineHeight: 1.55 }}>{d.body}</p>
                 </div>
                 <LinkArr to="#">Download PDF</LinkArr>
-              </a>
+              </div>
             ))}
           </div>
         </div>

@@ -3,6 +3,9 @@ import "./globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import WhatsAppPill from "@/components/layout/WhatsAppPill";
+import ScrollReveal from "@/components/shared/ScrollReveal";
+
+/* eslint-disable @next/next/no-page-custom-font */
 
 export const metadata: Metadata = {
   title: {
@@ -36,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -45,7 +48,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
+        <ScrollReveal />
         <Nav />
         <main>{children}</main>
         <Footer />

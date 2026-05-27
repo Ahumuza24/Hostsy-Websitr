@@ -126,7 +126,7 @@ interface CtaBandProps {
 export function CtaBand({ kicker, headline, sub, primary, secondary, bg }: CtaBandProps) {
   const bgImg = bg || 'https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=2000&q=80';
   return (
-    <section className="cta-band">
+    <section className="cta-band reveal">
       <div className="cta-band__bg" style={{ backgroundImage: `url(${bgImg})` }}></div>
       <div className="cta-band__veil"></div>
       <div className="cta-band__inner wrap-narrow" style={{ textAlign: 'center' }}>
@@ -197,7 +197,7 @@ interface ImageBreakProps {
 export function ImageBreak({ image, height = 420, caption, overline }: ImageBreakProps) {
   return (
     <section style={{ position: 'relative', height, overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+      <div className="zoom-bg" style={{ position: 'absolute', inset: 0, backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,31,51,0.15), rgba(11,31,51,0.6))' }}></div>
       {caption && (
         <div className="wrap" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', paddingBottom: 40, color: 'var(--ivory)' }}>

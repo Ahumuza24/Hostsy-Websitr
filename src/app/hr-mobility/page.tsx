@@ -149,14 +149,14 @@ export default function HRMobilityPage() {
               <p className="lede" style={{ marginTop: 28 }}>During onboarding we sit with your mobility lead and translate each policy band into a Hostsy apartment grade and neighbourhood. From that point forward, every placement defaults to compliant.</p>
             </div>
           </div>
-          <div style={{ marginTop: 64, border: '1px solid var(--line)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1.2fr', padding: '20px 24px', borderBottom: '1px solid var(--line)', background: 'var(--ivory-2)' }}>
+          <div className="policy-table" style={{ marginTop: 64, border: '1px solid var(--line)' }}>
+            <div className="policy-table__row policy-table__head" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1.2fr', padding: '20px 24px', borderBottom: '1px solid var(--line)', background: 'var(--ivory-2)' }}>
               {['Policy band', 'Hostsy grade', 'Indicative monthly', 'Typical neighbourhoods'].map(h => (
                 <span key={h} className="label label--muted">{h}</span>
               ))}
             </div>
             {POLICY_BANDS.map((row, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1.2fr', padding: '24px', borderBottom: i < 4 ? '1px solid var(--line)' : 0, alignItems: 'baseline' }}>
+              <div key={i} className="policy-table__row" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1fr 1.2fr', padding: '24px', borderBottom: i < 4 ? '1px solid var(--line)' : 0, alignItems: 'baseline' }}>
                 <span style={{ fontFamily: 'var(--f-display)', fontSize: 22, letterSpacing: '-0.01em' }}>{row[0]}</span>
                 <span style={{ fontFamily: 'var(--f-sans)', fontSize: 14.5 }}>{row[1]}</span>
                 <span style={{ fontFamily: 'var(--f-mono)', fontSize: 13, letterSpacing: '0.04em' }}>{row[2]}</span>

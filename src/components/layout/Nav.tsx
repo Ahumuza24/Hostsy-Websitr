@@ -7,11 +7,11 @@ import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
   { href: '/corporate-housing', label: 'Corporate Housing' },
   { href: '/hr-mobility', label: 'For HR & Mobility' },
   { href: '/landlords', label: 'For Landlords' },
   { href: '/locations', label: 'Locations' },
-  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -26,8 +26,9 @@ function Arrow() {
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobile, setMobile] = useState(false);
+  const [mobileState, setMobileState] = useState({ open: false, path: '' });
   const pathname = usePathname();
+  const mobile = mobileState.open && mobileState.path === pathname;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -35,10 +36,6 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  useEffect(() => {
-    setMobile(false);
-  }, [pathname]);
 
   // All pages start with a dark hero, so nav always starts over ink
   const onInk = true;
@@ -63,9 +60,9 @@ export default function Nav() {
             <Image
               src="/hostsy-logo-gold.png"
               alt="Hostsy"
-              width={120}
+              width={40}
               height={40}
-              style={{ height: 40, width: 'auto', objectFit: 'contain' }}
+              style={{ height: 40, width: 40, objectFit: 'contain' }}
               priority
             />
             <span className="tag">Corporate Housing</span>
@@ -91,7 +88,7 @@ export default function Nav() {
             <button
               className="nav__burger"
               aria-label="Open menu"
-              onClick={() => setMobile(true)}
+              onClick={() => setMobileState({ open: true, path: pathname })}
             >
               <span></span>
             </button>
@@ -103,7 +100,7 @@ export default function Nav() {
         <div className="mobile-menu" role="dialog" aria-label="Navigation menu">
           <button
             className="close"
-            onClick={() => setMobile(false)}
+            onClick={() => setMobileState({ open: false, path: pathname })}
             aria-label="Close menu"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.4">
@@ -112,7 +109,7 @@ export default function Nav() {
             </svg>
           </button>
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href} onClick={() => setMobile(false)}>
+            <Link key={l.href} href={l.href} onClick={() => setMobileState({ open: false, path: pathname })}>
               {l.label}
             </Link>
           ))}

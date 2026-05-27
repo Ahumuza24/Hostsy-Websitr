@@ -111,33 +111,19 @@ export default function HomePage() {
         <div className="hero__veil"></div>
         <div className="hero__grain"></div>
         <div className="hero__inner wrap">
-          <div className="hero__top">
-            <Kicker num="01" name="Corporate Housing Operator · Est. 2019" light />
-            <div style={{ display: 'flex', gap: 18, alignItems: 'center', color: 'rgba(241,235,222,0.7)', fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase' }}>
-              <span>Pretoria</span>
-              <span style={{ width: 24, height: 1, background: 'currentColor', opacity: 0.4 }}></span>
-              <span>Johannesburg</span>
-              <span style={{ width: 24, height: 1, background: 'currentColor', opacity: 0.4 }}></span>
-              <span>Gauteng</span>
-            </div>
-          </div>
           <div className="rise-1">
             <h1 className="display hero__headline">
-              Corporate housing<br />
-              for <em>relocations</em>, project teams<br />
-              and extended stays.
+              <em>Corporate Housing</em><br />
+              for Relocations,<br />
+              Project Teams &amp;<br />
+              Extended Stays
             </h1>
           </div>
           <div className="rise-2">
             <p className="hero__sub">
-              Premium furnished apartments across Pretoria and Johannesburg, fully managed for companies relocating{' '}
-              <span className="rotator">
-                <span>executives.</span>
-                <span>engineers.</span>
-                <span>diplomats.</span>
-                <span>project teams.</span>
-                <span>executives.</span>
-              </span>
+              Hostsy delivers premium, fully managed apartments for companies moving people
+              across Pretoria and Johannesburg, with every stay handled from first brief to final
+              handover.
             </p>
           </div>
           <div className="rise-3">
@@ -146,7 +132,7 @@ export default function HomePage() {
               <CTA to="/landlords" kind="ghost-ivory" size="lg">Partner With Hostsy</CTA>
             </div>
           </div>
-          <div className="rise-4" style={{ marginTop: 64, paddingTop: 32, borderTop: '1px solid rgba(241,235,222,0.18)' }}>
+          <div className="rise-4 hero__metrics">
             <div className="hero__meta">
               <div className="item"><span className="k">Coverage</span><span className="v">Pretoria · Johannesburg</span></div>
               <div className="item"><span className="k">Minimum stay</span><span className="v">30 nights</span></div>
@@ -165,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* Client logos */}
-      <section className="wrap" style={{ paddingTop: 80, paddingBottom: 40 }}>
+      <section className="wrap reveal" style={{ paddingTop: 80, paddingBottom: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 20, marginBottom: 28 }}>
           <Kicker num="02" name="Trusted by" />
           <p className="label label--muted">Corporates · Diplomatic missions · Project operators</p>
@@ -181,7 +167,7 @@ export default function HomePage() {
       </section>
 
       {/* Why Hostsy */}
-      <section className="section">
+      <section className="section reveal">
         <div className="wrap">
           <div className="editorial">
             <div className="editorial__label">
@@ -193,7 +179,7 @@ export default function HomePage() {
               <p className="lede" style={{ marginTop: 28 }}>Hostsy was built for the operational realities of corporate mobility. One contract, one invoice, one point of contact across every apartment, every city, every employee. No surprises for your team. No second-guessing for your CFO.</p>
             </div>
           </div>
-          <div className="grid-3" style={{ marginTop: 80 }}>
+          <div className="grid-3 reveal-stagger" style={{ marginTop: 80 }}>
             {WHY_CARDS.map(c => (
               <div key={c.letter} className="card">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
@@ -209,10 +195,12 @@ export default function HomePage() {
       </section>
 
       {/* Image break */}
-      <ImageBreak image={BALCONY_IMG} height={460} overline="WATERKLOOF · PRETORIA" caption="The Hostsy Residence: 84 sqm, fibre, backup power, weekly housekeeping, two bedrooms with a north facing balcony." />
+      <div className="reveal-zoom">
+        <ImageBreak image={BALCONY_IMG} height={460} overline="WATERKLOOF · PRETORIA" caption="The Hostsy Residence: 84 sqm, fibre, backup power, weekly housekeeping, two bedrooms with a north facing balcony." />
+      </div>
 
       {/* How it works */}
-      <section className="section on-ink">
+      <section className="section on-ink reveal">
         <div className="wrap">
           <div className="editorial">
             <div className="editorial__label">
@@ -224,7 +212,7 @@ export default function HomePage() {
               <p className="lede" style={{ marginTop: 28, color: 'rgba(241,235,222,0.78)' }}>A simple, five step path from inquiry to a settled employee. Each step is owned by a named person on our side.</p>
             </div>
           </div>
-          <div className="process" style={{ marginTop: 64, borderTopColor: 'rgba(241,235,222,0.18)' }}>
+          <div className="process reveal-stagger" style={{ marginTop: 64, borderTopColor: 'rgba(241,235,222,0.18)' }}>
             {PROCESS_STEPS.map(s => (
               <div key={s.n} className="step" style={{ borderRightColor: 'rgba(241,235,222,0.18)', borderBottomColor: 'rgba(241,235,222,0.18)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -236,8 +224,8 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 120, paddingTop: 40, borderTop: '1px solid rgba(241,235,222,0.18)', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 80, alignItems: 'center' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56 }}>
+          <div className="operations-proof reveal" style={{ marginTop: 120, paddingTop: 40, borderTop: '1px solid rgba(241,235,222,0.18)', display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 80, alignItems: 'center' }}>
+            <div className="operations-proof__stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56 }}>
               <Stat value="220" suffix="+" label="Apartments under direct Hostsy management across Gauteng" />
               <Stat value="48" suffix="hr" label="Average turnaround from inquiry to curated apartment shortlist" />
               <Stat value="97" suffix="%" label="On time move in rate across the last twelve months of bookings" />
@@ -257,7 +245,7 @@ export default function HomePage() {
       </section>
 
       {/* Cost vs hotels */}
-      <section className="section">
+      <section className="section reveal">
         <div className="wrap">
           <div className="editorial">
             <div className="editorial__label">
@@ -269,7 +257,7 @@ export default function HomePage() {
               <p className="lede" style={{ marginTop: 28 }}>For any stay beyond three weeks, corporate housing wins on price, comfort and predictability. The comparison below is for a typical 60 night placement of a single executive in Sandton.</p>
             </div>
           </div>
-          <div style={{ marginTop: 80, padding: '48px 48px 40px', background: 'var(--ivory-2)', border: '1px solid var(--line)' }}>
+          <div className="cost-panel reveal" style={{ marginTop: 80, padding: '48px 48px 40px', background: 'var(--ivory-2)', border: '1px solid var(--line)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 16, marginBottom: 32 }}>
               <div>
                 <span className="label label--brass">Cumulative cost · 60 nights, single executive, Sandton</span>
@@ -282,7 +270,7 @@ export default function HomePage() {
             </div>
             <CostChart />
           </div>
-          <div style={{ marginTop: 56 }} className="compare">
+          <div style={{ marginTop: 56 }} className="compare reveal-stagger">
             <div className="col label head">&nbsp;</div>
             <div className="col head">Four star hotel</div>
             <div className="col hostsy head">
@@ -307,7 +295,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured apartments */}
-      <section className="section on-sand">
+      <section className="section on-sand reveal">
         <div className="wrap">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20, marginBottom: 56 }}>
             <div>
@@ -316,7 +304,7 @@ export default function HomePage() {
             </div>
             <LinkArr to="/locations">View all 220 apartments</LinkArr>
           </div>
-          <div className="grid-3">
+          <div className="grid-3 reveal-stagger">
             {APARTMENTS.map((c, i) => (
               <Link key={i} className="aptcard" href="/locations">
                 <div className="aptcard__img" style={{ backgroundImage: `url(${c.img})` }}>
@@ -336,7 +324,7 @@ export default function HomePage() {
       </section>
 
       {/* What is included */}
-      <section className="section">
+      <section className="section reveal">
         <div className="wrap">
           <div className="editorial">
             <div className="editorial__label">
@@ -348,7 +336,7 @@ export default function HomePage() {
               <p className="lede" style={{ marginTop: 28 }}>Hostsy apartments are not a marketplace. They are an operated portfolio. Each unit is brought to specification before it carries our name. That is how an HR lead in Frankfurt can confidently sign off on a placement in Pretoria, sight unseen.</p>
             </div>
           </div>
-          <div className="grid-4" style={{ marginTop: 64, gap: 0, borderTop: '1px solid var(--line)' }}>
+          <div className="grid-4 reveal-stagger" style={{ marginTop: 64, gap: 0, borderTop: '1px solid var(--line)' }}>
             {SPECS.map((s, i) => (
               <div key={s.k} style={{ padding: '28px 24px', borderRight: (i + 1) % 4 !== 0 ? '1px solid var(--line)' : 0, borderBottom: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <IconBadge name={s.ic} tone="line" size={42} />
@@ -363,9 +351,9 @@ export default function HomePage() {
       </section>
 
       {/* Landlord partnership */}
-      <section className="section on-ink">
+      <section className="section on-ink reveal">
         <div className="wrap">
-          <div className="grid-2" style={{ alignItems: 'center', gap: 80 }}>
+          <div className="grid-2 landlord-grid" style={{ alignItems: 'center', gap: 80 }}>
             <div>
               <Kicker num="08" name="For landlords" light />
               <h2 className="h-1" style={{ margin: '24px 0 28px' }}>Guaranteed rent.<br />Professional tenants.<br /><em>Predictable income.</em></h2>
@@ -375,9 +363,9 @@ export default function HomePage() {
                 <CTA to="/landlords" kind="ghost-ivory">View property criteria</CTA>
               </div>
             </div>
-            <div style={{ position: 'relative' }}>
+            <div className="landlord-visual" style={{ position: 'relative' }}>
               <div style={{ aspectRatio: '4/5', backgroundImage: `url(${BUILDING_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
-              <div style={{ position: 'absolute', left: -32, bottom: 40, background: 'var(--ivory)', color: 'var(--ink)', padding: '24px 28px', maxWidth: 280, boxShadow: '0 20px 50px rgba(0,0,0,0.25)' }}>
+              <div className="landlord-offer" style={{ position: 'absolute', left: -32, bottom: 40, background: 'var(--ivory)', color: 'var(--ink)', padding: '24px 28px', maxWidth: 280, boxShadow: '0 20px 50px rgba(0,0,0,0.25)' }}>
                 <span className="label label--brass">Indicative offer</span>
                 <p className="h-3" style={{ margin: '10px 0 0' }}>Up to <em>R 38,000</em> guaranteed monthly on a two bedroom in Brooklyn, on a 36 month master lease.</p>
               </div>
@@ -387,17 +375,17 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section className="section">
+      <section className="section reveal">
         <div className="wrap">
           <div style={{ marginBottom: 56 }}>
             <Kicker num="09" name="From our partners" />
           </div>
-          <div className="grid-2" style={{ gap: 80 }}>
+          <div className="grid-2 reveal-stagger" style={{ gap: 80 }}>
             <Testimonial quote="Hostsy quietly absorbed the most painful part of our relocation programme. Three executives, three cities, one invoice, zero escalations." name="Anika R." role="Global Mobility Lead" company="Saxon Capital" />
             <Testimonial quote="We had a 14 person engineering team land in Pretoria for an 8 month deployment. Hostsy had all of them placed within 11 days of brief, all in walking distance." name="Mathys K." role="Operations Director" company="Vector Engineering" />
           </div>
           <hr className="hr" style={{ margin: '80px 0' }} />
-          <div className="grid-2" style={{ gap: 80 }}>
+          <div className="grid-2 reveal-stagger" style={{ gap: 80 }}>
             <Testimonial quote="The diplomatic placements we book through Hostsy feel like an extension of our mission. They understand discretion. They understand standards." name="J. van Rensburg" role="First Secretary" company="Embassy of the Netherlands" />
             <Testimonial quote="The cost saving against our previous hotel programme paid for two additional engineers on the project. The CFO asked us why we hadn't done this two years ago." name="Lerato M." role="Head of HR" company="Kruger Mining Group" />
           </div>
@@ -405,7 +393,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section className="section on-sand">
+      <section className="section on-sand reveal">
         <div className="wrap">
           <div className="editorial">
             <div className="editorial__label">
