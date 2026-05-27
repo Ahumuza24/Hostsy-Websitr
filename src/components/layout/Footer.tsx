@@ -4,23 +4,7 @@ export default function Footer() {
   return (
     <footer className="foot">
       <div className="wrap">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 24 }}>
-          <div className="kicker" style={{ color: 'rgba(241,235,222,0.66)' }}>
-            <span className="dot"></span>
-            <span className="num">00</span>
-            <span className="name">/ Hostsy / Corporate Housing Infrastructure</span>
-          </div>
-          <div style={{ fontFamily: 'var(--f-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(241,235,222,0.66)' }}>
-            Pretoria · Johannesburg · Gauteng
-          </div>
-        </div>
-
-        <h2 className="foot__big">
-          Premium corporate<br />
-          housing<span>.</span>
-        </h2>
-
-        <div className="foot__grid">
+                <div className="foot__grid">
           <div className="foot__col">
             <h5>Hostsy</h5>
             <p style={{ fontFamily: 'var(--f-display)', fontSize: 20, fontWeight: 300, lineHeight: 1.4, margin: '0 0 24px', maxWidth: '28ch', color: 'var(--ivory)' }}>

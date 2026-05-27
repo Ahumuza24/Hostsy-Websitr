@@ -433,6 +433,7 @@ body {
 }
 
 .process { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.process--compact { grid-template-columns: repeat(3, 1fr); }
 .process .step { padding: 36px 28px 36px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 18px; transition: transform .35s cubic-bezier(.16,.84,.3,1), background .35s ease, padding-left .35s ease; }
 .process .step:hover { transform: translateY(-4px); background: rgba(241,235,222,.045); padding-left: 14px; }
 .process .step:last-child { border-right: 0; }
@@ -441,6 +442,7 @@ body {
 .process .step h4 { font-family: var(--f-display); font-weight: 400; font-size: 22px; margin: 0; letter-spacing: -0.01em; }
 .process .step p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
 @media (max-width: 1100px) { .process { grid-template-columns: 1fr 1fr; } .process .step { border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 0; } }
+@media (max-width: 700px) { .process, .process--compact { grid-template-columns: 1fr; } }
 
 .aptcard { display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: transform .35s cubic-bezier(.16,.84,.3,1), color .25s ease; }
 .aptcard:hover { transform: translateY(-6px); color: var(--brass-deep); }
