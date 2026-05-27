@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Kicker, CTA, Stat, PageHeroBlock } from '@/components/shared/primitives';
+import GautengMap from '@/components/dataviz/GautengMap';
 
 export const metadata: Metadata = {
   title: 'Locations — Pretoria & Johannesburg Corporate Housing | Hostsy',
@@ -46,6 +47,13 @@ export default function LocationsPage() {
             <Stat value="2" label="Cities. Pretoria and Johannesburg, end to end." />
             <Stat value="42" label="Embassies within 4 km of a Hostsy apartment" />
           </div>
+        </div>
+      </section>
+
+      {/* Gauteng map */}
+      <section className="section on-ink">
+        <div className="wrap">
+          <GautengMap />
         </div>
       </section>
 

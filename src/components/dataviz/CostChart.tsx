@@ -1,94 +1,180 @@
 'use client';
 
-export default function CostChart({ light = false }: { light?: boolean }) {
-  const months = [1, 2, 3, 4, 6, 9, 12];
-  const hotelRate = 88500;
-  const hostsyRate = 52500;
-  const max = hotelRate * 12;
-  const cols = months.length;
-  const fg = light ? 'rgba(241,235,222,0.8)' : 'var(--ink)';
-  const muted = light ? 'rgba(241,235,222,0.5)' : 'var(--muted)';
-  const grid = light ? 'rgba(241,235,222,0.12)' : 'rgba(11,31,51,0.10)';
+import { useEffect, useRef } from 'react';
+
+const MONTHS = [1, 2, 3, 4, 6, 9, 12];
+const HOTEL_RATE = 88500;
+const HOSTSY_RATE = 52500;
+const MAX = HOTEL_RATE * 12; // 1,062,000
+
+const PAD_LEFT = 72;
+const PAD_RIGHT = 24;
+const PAD_TOP = 24;
+const PAD_BOTTOM = 48;
+const W = 960;
+const H = 380;
+const CHART_W = W - PAD_LEFT - PAD_RIGHT;
+const CHART_H = H - PAD_TOP - PAD_BOTTOM;
+
+const COL_W = CHART_W / MONTHS.length;
+const BAR_GAP = 5;
+const BAR_W = (COL_W - 24 - BAR_GAP) / 2;
+
+function xFor(i: number) {
+  return PAD_LEFT + i * COL_W + 12;
+}
+function yFor(value: number) {
+  return PAD_TOP + CHART_H - (value / MAX) * CHART_H;
+}
+
+const Y_TICKS = [0, 0.25, 0.5, 0.75, 1];
+
+export default function CostChart() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { el.classList.add('is-in'); observer.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const savingsPoints = MONTHS.map((m, i) => {
+    const cx = xFor(i) + BAR_W + BAR_GAP / 2 + BAR_W / 2;
+    const saving = (HOTEL_RATE - HOSTSY_RATE) * m;
+    return { x: cx, y: yFor(saving), saving, m };
+  });
 
   return (
-    <div className="chart-anim" style={{ width: '100%' }}>
-      <div style={{ display: 'flex', gap: 28, marginBottom: 24, flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ width: 14, height: 14, background: 'transparent', border: '1px solid ' + muted, display: 'inline-block' }}></span>
+    <div ref={ref} className="chart-anim" style={{ width: '100%' }}>
+      {/* Legend */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 28, marginBottom: 20, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 14, height: 14, border: '1.5px solid var(--ink)', display: 'inline-block', flexShrink: 0 }} />
           <span className="label">4-star hotel</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ width: 14, height: 14, background: 'var(--brass)', display: 'inline-block' }}></span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 14, height: 14, background: 'var(--brass)', display: 'inline-block', flexShrink: 0 }} />
           <span className="label">Hostsy apartment</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
-          <span style={{ width: 16, height: 1, background: 'var(--brass)', display: 'inline-block' }}></span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
+          <span style={{ width: 20, height: 1.5, background: 'var(--brass)', display: 'inline-block' }} />
           <span className="label label--brass">Cumulative saving</span>
         </div>
       </div>
 
-      <svg viewBox="0 0 1000 400" style={{ width: '100%', height: 'auto', display: 'block' }}>
-        {[0, 0.25, 0.5, 0.75, 1].map((p) => {
-          const y = 340 - p * 280;
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ width: '100%', height: 'auto', display: 'block', overflow: 'visible' }}
+        aria-label="Bar chart showing cumulative cost of 4-star hotel vs Hostsy apartment over 12 months"
+      >
+        {/* Horizontal grid lines */}
+        {Y_TICKS.map((p) => {
+          const y = PAD_TOP + CHART_H - p * CHART_H;
+          const value = Math.round((MAX * p) / 1000);
           return (
             <g key={p}>
-              <line x1="60" x2="960" y1={y} y2={y} stroke={grid} strokeWidth="1" strokeDasharray={p === 0 ? '' : '2 4'} />
-              <text x="0" y={y + 4} fontFamily="JetBrains Mono" fontSize="11" fill={muted}>
-                R {Math.round((max * p) / 1000)}k
+              <line
+                x1={PAD_LEFT} x2={W - PAD_RIGHT}
+                y1={y} y2={y}
+                stroke="rgba(11,31,51,0.12)"
+                strokeWidth="1"
+                strokeDasharray={p === 0 ? undefined : '2 5'}
+              />
+              <text
+                x={PAD_LEFT - 8} y={y + 4}
+                textAnchor="end"
+                fontFamily="JetBrains Mono, monospace"
+                fontSize="10"
+                fill="rgba(11,31,51,0.5)"
+              >
+                R {value}k
               </text>
             </g>
           );
         })}
 
-        {months.map((m, i) => {
-          const x = 80 + i * (900 / cols);
-          const groupW = 900 / cols - 24;
-          const barW = (groupW - 8) / 2;
-          const hotelH = (hotelRate * m / max) * 280;
-          const hostsyH = (hostsyRate * m / max) * 280;
+        {/* Bars */}
+        {MONTHS.map((m, i) => {
+          const x = xFor(i);
+          const hotelH = (HOTEL_RATE * m / MAX) * CHART_H;
+          const hostsyH = (HOSTSY_RATE * m / MAX) * CHART_H;
+          const baseline = PAD_TOP + CHART_H;
           return (
             <g key={m}>
-              <rect className={`bar bar-${i + 1}`} x={x} y={340 - hotelH} width={barW} height={hotelH} fill="none" stroke={fg} strokeWidth="1" />
-              <rect className={`bar bar-${i + 1}`} x={x + barW + 8} y={340 - hostsyH} width={barW} height={hostsyH} fill="var(--brass)" />
-              <text x={x + groupW / 2 - 8} y="362" fontFamily="JetBrains Mono" fontSize="11" fill={muted}>
+              {/* Hotel bar — hollow */}
+              <rect
+                className={`bar bar-${i + 1}`}
+                x={x}
+                y={baseline - hotelH}
+                width={BAR_W}
+                height={hotelH}
+                fill="none"
+                stroke="var(--ink)"
+                strokeWidth="1.5"
+              />
+              {/* Hostsy bar — filled brass */}
+              <rect
+                className={`bar bar-${i + 1}`}
+                x={x + BAR_W + BAR_GAP}
+                y={baseline - hostsyH}
+                width={BAR_W}
+                height={hostsyH}
+                fill="var(--brass)"
+              />
+              {/* X-axis label */}
+              <text
+                x={x + BAR_W + BAR_GAP / 2}
+                y={baseline + 18}
+                textAnchor="middle"
+                fontFamily="JetBrains Mono, monospace"
+                fontSize="10"
+                fill="rgba(11,31,51,0.5)"
+              >
                 {String(m).padStart(2, '0')} mo
               </text>
             </g>
           );
         })}
 
+        {/* Savings polyline */}
         <polyline
           className="savings"
-          points={months.map((m, i) => {
-            const x = 80 + i * (900 / cols) + (900 / cols - 24) / 2;
-            const saving = (hotelRate - hostsyRate) * m;
-            const y = 340 - (saving / max) * 280;
-            return `${x},${y}`;
-          }).join(' ')}
-          fill="none" stroke="var(--brass)" strokeWidth="1.6" strokeDasharray="2 3"
+          points={savingsPoints.map(p => `${p.x},${p.y}`).join(' ')}
+          fill="none"
+          stroke="var(--brass)"
+          strokeWidth="1.8"
+          strokeDasharray="3 4"
+          strokeLinecap="round"
         />
-        {months.map((m, i) => {
-          const x = 80 + i * (900 / cols) + (900 / cols - 24) / 2;
-          const saving = (hotelRate - hostsyRate) * m;
-          const y = 340 - (saving / max) * 280;
-          return <circle className="savings-dot" key={m} cx={x} cy={y} r="3" fill="var(--brass)" />;
-        })}
 
-        {([2, 12] as const).map((m) => {
-          const i = months.indexOf(m);
-          if (i === -1) return null;
-          const x = 80 + i * (900 / cols) + (900 / cols - 24) / 2;
-          const saving = (hotelRate - hostsyRate) * m;
-          const y = 340 - (saving / max) * 280;
-          return (
-            <g key={m}>
-              <line x1={x} x2={x} y1={y - 6} y2={y - 18} stroke="var(--brass)" strokeWidth="1" />
-              <text x={x} y={y - 24} textAnchor="middle" fontFamily="Newsreader" fontSize="16" fill={fg}>
+        {/* Savings dots */}
+        {savingsPoints.map(({ x, y, m }) => (
+          <circle className="savings-dot" key={m} cx={x} cy={y} r="3.5" fill="var(--brass)" />
+        ))}
+
+        {/* Callout annotations at month 2 and month 12 */}
+        {savingsPoints
+          .filter(p => p.m === 2 || p.m === 12)
+          .map(({ x, y, saving }) => (
+            <g key={saving}>
+              <line x1={x} x2={x} y1={y - 7} y2={y - 20} stroke="var(--brass)" strokeWidth="1" />
+              <text
+                x={x} y={y - 26}
+                textAnchor="middle"
+                fontFamily="Newsreader, Georgia, serif"
+                fontSize="15"
+                fontWeight="400"
+                fill="var(--ink)"
+              >
                 R {Math.round(saving / 1000)}k
               </text>
             </g>
-          );
-        })}
+          ))}
       </svg>
     </div>
   );
