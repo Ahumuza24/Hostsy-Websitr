@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
+import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import WhatsAppPill from "@/components/layout/WhatsAppPill";
 
 export const metadata: Metadata = {
   title: {
@@ -35,11 +36,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col font-sans antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <Nav />
+        <main>{children}</main>
         <Footer />
+        <WhatsAppPill />
       </body>
     </html>
   );

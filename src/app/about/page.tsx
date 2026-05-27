@@ -1,262 +1,131 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Target, Eye, CheckCircle2 } from "lucide-react";
+import type { Metadata } from 'next';
+import { Kicker, CTA, Stat, CtaBand, PageHeroBlock } from '@/components/shared/primitives';
+import { IconBadge } from '@/components/shared/Icons';
 
 export const metadata: Metadata = {
-  title: "About Hostsy — Corporate Housing Infrastructure for Gauteng",
-  description:
-    "Hostsy is a B2B corporate housing company managing furnished apartments for companies placing employees in Pretoria and Johannesburg. Built for operational certainty.",
+  title: 'About Hostsy — An Operator, Not a Marketplace',
+  description: 'Hostsy was founded in 2019 to bring institutional discipline to corporate housing in South Africa. We operate every apartment under one brand, one specification, one service standard.',
 };
 
-const values = [
-  {
-    title: "Operational Certainty",
-    description:
-      "We remove uncertainty from the equation. Confirmed placements, on-spec properties, zero-surprise billing. Your HR team can book and move on.",
-  },
-  {
-    title: "Consistent Quality",
-    description:
-      "Every property in our portfolio meets the same standard. Executives, project teams, and diplomatic staff all receive the same calibre of accommodation.",
-  },
-  {
-    title: "Corporate Integrity",
-    description:
-      "We operate as a proper business partner — invoiced, accountable, and responsive. No consumer-market workarounds or informal arrangements.",
-  },
-  {
-    title: "People First",
-    description:
-      "Relocation is hard. An employee arriving in a new city needs to feel settled, not stressed. We take housing off their plate so they can focus on the work.",
-  },
+const HERO_IMG = 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=2000&q=80';
+const WORKSPACE_IMG = 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=900&q=80';
+const BALCONY_IMG = 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80';
+const CITY_NIGHT = 'https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=2000&q=80';
+
+const PRINCIPLES = [
+  { ic: 'target', num: 'I', title: 'Specification beats taste.', body: 'Apartments are not styled to flatter a photograph. They are configured to perform for a year. The decisions that matter happen in the spec sheet, not the moodboard.' },
+  { ic: 'wrench', num: 'II', title: 'Promises that close out tickets.', body: 'A four hour maintenance SLA is not a marketing line. It is a metric we report internally every week and externally every quarter. Promises we cannot keep, we do not make.' },
+  { ic: 'user', num: 'III', title: 'One named person, every time.', body: 'Behind every account sits a person who knows your name, your policy, your people. Not a queue. Not a chatbot. The same person, on the same number, for years.' },
+  { ic: 'shield', num: 'IV', title: 'Operate at the level of the auditor.', body: 'VAT, POPIA, B-BBEE, PO matching, SLA reporting. The administrative discipline of a Fortune 500 vendor, applied to a 220 unit operation. Boring on purpose.' },
+];
+
+const TEAM = [
+  { name: 'Thandi M. Sithole', role: 'Chief Executive', bio: 'Former GM at Protea Hotels. Built Hostsy from 12 apartments to 220. Obsessed with operational systems, not property.' },
+  { name: 'Pieter van der Berg', role: 'Chief Operating Officer', bio: 'Ex Marriott operations. Responsible for every apartment in the portfolio, every SLA, every maintenance ticket.' },
+  { name: 'Anika Roussouw', role: 'Head of Client Partnerships', bio: 'Former global mobility lead at a Big 4 firm. The person who knows exactly what an HR director needs before they ask.' },
 ];
 
 export default function AboutPage() {
   return (
-    <div className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="relative bg-[#0B1F3E] pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1560185127-6a7aa2f02bff?auto=format&fit=crop&w=1920&q=80"
-            alt="Executive apartment interior"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-15"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3E] to-[#0B1F3E]/80" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Badge
-            variant="outline"
-            className="mb-6 border-[#C8A86C]/50 text-[#C8A86C] bg-[#C8A86C]/10 font-medium tracking-wide text-xs uppercase"
-          >
-            About Hostsy
-          </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5 max-w-3xl">
-            Corporate Housing Infrastructure
-            <span className="block text-[#C8A86C]">Built for Gauteng.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8 font-light">
-            Hostsy is a B2B corporate housing company. We manage a portfolio of premium furnished
-            apartments for companies placing employees in Pretoria and Johannesburg.
-          </p>
-          <Link href="/contact#request">
-            <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-              Work With Us
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+    <main>
+      <PageHeroBlock
+        index="06 / 07"
+        label="About Hostsy"
+        title={<>An operator, <em>not</em> a marketplace.</>}
+        sub="Hostsy was founded in 2019 to bring institutional discipline to corporate housing in South Africa. We do not list. We do not broker. We operate every apartment in our portfolio under one brand, one specification, one service standard."
+      />
 
-      {/* Who We Are */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="01" name="The thesis" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
             <div>
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                Who We Are
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-                A Housing Partner Built for Business
+              <h2 className="h-1" style={{ margin: 0 }}>
+                Talent moves to where work is.<br />
+                Companies need housing infrastructure that <em>moves with them</em>.
               </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base">
-                <p>
-                  Hostsy was founded to solve a persistent gap in the Gauteng market: companies
-                  needed a professional, B2B-grade housing partner for their mobile workforce — not
-                  hotels that charge per night, not Airbnb with its inconsistency, not the
-                  complexity of managing private leases.
-                </p>
-                <p>
-                  We lease furnished apartments across Pretoria and Johannesburg&apos;s key
-                  corporate and executive suburbs. We manage them to a high standard and place
-                  vetted corporate tenants — executives, project teams, diplomatic staff — placed
-                  by the companies that need them.
-                </p>
-                <p>
-                  The result: companies get a single, accountable housing partner. Landlords get
-                  guaranteed rent and zero vacancy. Employees arrive to a home that is ready.
-                </p>
-              </div>
+              <p className="lede" style={{ marginTop: 28 }}>
+                South Africa&apos;s corporate centre is concentrated in Gauteng. Mining houses headquartered in Johannesburg, banks anchored to Sandton, diplomatic missions clustered in Pretoria, and a constant flow of executives, engineers and specialists arriving for weeks, months and years. The hotel category answered well for short trips. The private rental market answered well for permanent moves. Almost nothing existed for the long middle. We built Hostsy to be that infrastructure.
+              </p>
             </div>
-            <div className="relative">
-              <Image
-                src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=800&q=80"
-                alt="Premium corporate apartment"
-                width={600}
-                height={450}
-                className="rounded-xl object-cover w-full shadow-lg"
-              />
-              <div className="absolute -bottom-4 -left-4 bg-[#C8A86C] text-[#0B1F3E] p-4 rounded-lg shadow-lg">
-                <div className="text-2xl font-black">Gauteng</div>
-                <div className="text-xs font-semibold uppercase tracking-wide">
-                  Pretoria &amp; Johannesburg
-                </div>
-              </div>
-            </div>
+          </div>
+          <div style={{ marginTop: 80, display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, height: 480 }}>
+            <div style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ backgroundImage: `url(${WORKSPACE_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div style={{ backgroundImage: `url(${BALCONY_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-10 rounded-2xl border border-gray-100 shadow-sm">
-              <Target className="w-8 h-8 text-[#C8A86C] mb-5" />
-              <h3 className="text-xl font-black text-[#0B1F3E] mb-4">Our Mission</h3>
-              <p className="text-gray-500 leading-relaxed">
-                To be the most reliable corporate housing partner in Gauteng — making employee
-                accommodation a solved problem for every company we work with.
-              </p>
-            </div>
-            <div className="bg-[#0B1F3E] p-10 rounded-2xl shadow-sm">
-              <Eye className="w-8 h-8 text-[#C8A86C] mb-5" />
-              <h3 className="text-xl font-black text-white mb-4">Our Vision</h3>
-              <p className="text-white/70 leading-relaxed">
-                A Gauteng where every company — from a mining group to a diplomatic mission —
-                has access to premium corporate housing that meets their standards, every time.
-              </p>
-            </div>
+      <section className="section on-ink">
+        <div className="wrap">
+          <Kicker num="02" name="Hostsy by the numbers" light />
+          <div className="stats" style={{ marginTop: 40 }}>
+            <Stat value="2019" label="Year founded in Pretoria, by ex hospitality operators" />
+            <Stat value="220" suffix="+" label="Apartments under direct Hostsy management today" />
+            <Stat value="34" label="Operational staff across Pretoria and Johannesburg" />
+            <Stat value="46" label="Corporate, diplomatic and project clients on contract" />
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-14">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              How We Operate
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              Operating Principles
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              These are not aspirational values. They are operating principles that shape every
-              placement, every property, and every interaction.
-            </p>
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="03" name="Operating principles" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Four principles, on every wall.</h2>
+              <p className="lede" style={{ marginTop: 28 }}>We are an operator. Operators live or die by the daily quality of execution. These are the four standards we hold our own team to, every day.</p>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {values.map((value) => (
-              <div
-                key={value.title}
-                className="p-8 border border-gray-100 rounded-xl hover:border-[#C8A86C]/40 hover:shadow-sm transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <CheckCircle2 className="w-6 h-6 text-[#C8A86C] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-bold text-[#0B1F3E] text-lg mb-2">{value.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{value.description}</p>
-                  </div>
+          <div className="grid-2" style={{ marginTop: 80, gap: 56 }}>
+            {PRINCIPLES.map(p => (
+              <div key={p.num}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+                  <IconBadge name={p.ic} tone="brass" size={56} />
+                  <span className="numeral" style={{ fontSize: 64, color: 'var(--brass)', display: 'block', lineHeight: 1 }}>{p.num}</span>
                 </div>
+                <h3 className="h-2" style={{ margin: '24px 0 18px', fontSize: 'clamp(28px, 3vw, 40px)' }}>{p.title}</h3>
+                <p style={{ color: 'var(--muted)', margin: 0, fontSize: 16, lineHeight: 1.6, maxWidth: '44ch' }}>{p.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* B2B Focus */}
-      <section className="py-20 md:py-28 bg-[#0B1F3E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                Our Focus
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight mb-5">
-                Built for B2B. Not for Tourists.
-              </h2>
-              <p className="text-white/60 text-lg leading-relaxed mb-8">
-                Everything about Hostsy is designed for business use — the invoicing structure, the
-                tenant profile, the management standards, the response times. We do not serve the
-                leisure market.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Monthly invoicing to your company, not individual receipts",
-                  "Tenants are employed professionals, not tourists",
-                  "Account manager who knows your requirements",
-                  "Properties managed to a corporate standard",
-                  "Urgent placements handled within 48 hours",
-                  "Contract-grade master lease agreements with landlords",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-[#C8A86C] flex-shrink-0" />
-                    <span className="text-white/70 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative">
-              <Image
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
-                alt="Modern apartment kitchen"
-                width={600}
-                height={450}
-                className="rounded-xl object-cover w-full shadow-lg opacity-80"
-              />
-            </div>
+      <section className="section on-sand">
+        <div className="wrap">
+          <Kicker num="04" name="Leadership" />
+          <h2 className="h-1" style={{ margin: '24px 0 56px', maxWidth: '22ch' }}>People who built it, people who run it.</h2>
+          <div className="grid-3">
+            {TEAM.map(t => (
+              <div key={t.name} style={{ borderTop: '1px solid var(--line)', paddingTop: 28 }}>
+                <div style={{ width: 56, height: 56, borderRadius: 999, background: 'rgba(176,141,91,0.15)', display: 'grid', placeItems: 'center', marginBottom: 20 }}>
+                  <span style={{ fontFamily: 'var(--f-display)', fontSize: 22, color: 'var(--brass)', fontStyle: 'italic' }}>{t.name.charAt(0)}</span>
+                </div>
+                <h4 className="h-3" style={{ margin: '0 0 4px' }}>{t.name}</h4>
+                <span className="label label--brass">{t.role}</span>
+                <p style={{ color: 'var(--muted)', marginTop: 14, fontSize: 14.5, lineHeight: 1.55 }}>{t.bio}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-10 md:p-14 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-[#0B1F3E] mb-4 tracking-tight">
-              Ready to Work Together?
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed max-w-xl mx-auto mb-8">
-              Whether you need accommodation for your employees or want to partner as a landlord,
-              we want to hear from you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact#request">
-                <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-                  Request Accommodation
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  className="border-[#0B1F3E] text-[#0B1F3E] hover:bg-[#0B1F3E] hover:text-white px-8"
-                >
-                  Contact Our Team
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <CtaBand
+        kicker={{ num: '05', name: "Let's talk" }}
+        headline={<span>The best way to know us is to brief us on <em>a placement</em>.</span>}
+        sub="Send us a brief. We come back with options. You will know very quickly whether Hostsy is the right operator for your programme."
+        primary={{ label: 'Send a brief', to: '/contact' }}
+        secondary={{ label: 'View our portfolio', to: '/locations' }}
+        bg={CITY_NIGHT}
+      />
+    </main>
   );
 }

@@ -1,350 +1,219 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  CheckCircle2,
-  ArrowRight,
-  Wifi,
-  Zap,
-  Wrench,
-  Shield,
-  FileText,
-  Home,
-  Briefcase,
-  Globe,
-  Users,
-  Building2,
-} from "lucide-react";
+import type { Metadata } from 'next';
+import { Kicker, CTA, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
+import { IconBadge } from '@/components/shared/Icons';
+import Timeline from '@/components/dataviz/Timeline';
 
 export const metadata: Metadata = {
-  title: "Corporate Housing — What It Is & Why It's Better Than Hotels",
-  description:
-    "Discover how corporate housing from Hostsy outperforms hotels for 30+ day stays. Fully furnished, fully managed apartments for executive relocations, project teams, and extended stays in Gauteng.",
+  title: 'Corporate Housing — Apartments Engineered for Long Stays | Hostsy',
+  description: 'Hostsy corporate housing: fully furnished apartments, professionally managed end to end, contracted business to business, billed monthly. The category for 30 nights to 36 months.',
 };
 
-const services = [
-  {
-    icon: Home,
-    title: "Full Furnishing",
-    description:
-      "Every apartment is fully furnished — beds, sofas, dining set, kitchen appliances, and linen. Nothing to source or set up.",
-  },
-  {
-    icon: Wifi,
-    title: "Fibre Internet",
-    description:
-      "High-speed fibre connectivity included in all units. Your employee can work from day one.",
-  },
-  {
-    icon: Zap,
-    title: "Backup Power",
-    description:
-      "Available in most units. Battery backup or generator for uninterrupted work and comfort.",
-  },
-  {
-    icon: Wrench,
-    title: "Maintenance",
-    description:
-      "Dedicated maintenance team. Any issue is handled quickly — your employee does not deal with it.",
-  },
-  {
-    icon: Shield,
-    title: "Weekly Cleaning",
-    description:
-      "Professional cleaning service included weekly. The apartment stays hotel-standard throughout the stay.",
-  },
-  {
-    icon: FileText,
-    title: "Corporate Invoicing",
-    description:
-      "Monthly invoice to your company — no personal receipts, no Airbnb-style transactions.",
-  },
-  {
-    icon: Users,
-    title: "Account Management",
-    description:
-      "Single point of contact for your HR or procurement team. All queries resolved within business hours.",
-  },
-  {
-    icon: Building2,
-    title: "Extensions & Changes",
-    description:
-      "Extend stays, change units, add more employees — we handle all adjustments efficiently.",
-  },
+const WORKSPACE_IMG = 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=2000&q=80';
+const CITY_NIGHT = 'https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=2000&q=80';
+const BEDROOM_IMG = 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=900&q=80';
+const LIVING_IMG = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80';
+const DINING_IMG = 'https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=900&q=80';
+
+const USE_CASES = [
+  { label: 'Executive relocation', title: 'A new country director, landing Monday.', body: 'A multinational appoints a regional MD into Sandton. They need a furnished three bedroom in Melrose, family ready, within walking distance of an international school. Hostsy handles the search, the lease, the welcome pack and the local SIM. The executive moves once.', tag: '12 to 24 months' },
+  { label: 'Project team housing', title: 'Eighteen engineers, eight months, walking distance.', body: 'A construction or engineering firm wins a deployment in Pretoria. They need eighteen apartments in a 2 km radius, with workspace, fibre and predictable invoicing for the project P&L. We block book a building. One contract. One invoice.', tag: '6 to 18 months' },
+  { label: 'Diplomatic placement', title: 'A diplomat, a discreet handover, embassy adjacency.', body: 'Diplomatic missions need housing near embassy row, with secure access, professional management and unimpeachable discretion. Hostsy maintains a dedicated portfolio in Arcadia and Waterkloof, with single point handover and named contacts.', tag: '24 to 48 months' },
+  { label: 'Extended stay specialist', title: 'A surgeon on a six month locum.', body: 'Hospitals, mining houses and consulting firms bring specialist talent in for fixed term assignments. Hostsy provides the bridge between hotel and permanent housing, with monthly billing and no early termination penalty if the assignment shifts.', tag: '3 to 12 months' },
+  { label: 'Bulk corporate stays', title: 'Sixty graduates, one rotation programme.', body: 'Banking and consulting graduate programmes rotate analysts through Johannesburg. Hostsy operates dedicated buildings configured for this exact use case, with shared lounges, gym access and a single account for the L&D team.', tag: '1 to 6 months' },
+  { label: 'Expat hire onboarding', title: 'First 90 days, then transition.', body: 'Many companies use Hostsy for the first 90 days after an expat hire arrives, while the employee finds permanent housing. We carry the operational load during the most disorienting weeks of their new life.', tag: '1 to 4 months' },
 ];
 
-const scenarios = [
-  {
-    icon: Briefcase,
-    title: "Executive Relocation",
-    description:
-      "A senior hire arrives from abroad before their permanent accommodation is confirmed. They need a furnished, fully serviced apartment in a safe executive neighbourhood — Waterkloof, Brooklyn, or Sandton — for 3–6 months while they settle in.",
-    timeframe: "3–12 months typical",
-  },
-  {
-    icon: Users,
-    title: "Project Teams",
-    description:
-      "A construction, consulting, or infrastructure firm deploys a team of 6–15 people to Gauteng for a project. The team needs apartments near the project site, all serviced, and invoiced to the company monthly.",
-    timeframe: "1–12 months typical",
-  },
-  {
-    icon: Globe,
-    title: "Diplomatic Placement",
-    description:
-      "A diplomatic mission needs housing for a newly arrived attaché before official diplomatic housing is ready. Requirements include security, proximity to the Union Buildings, and professional management.",
-    timeframe: "1–6 months typical",
-  },
-  {
-    icon: Home,
-    title: "Expat Hire",
-    description:
-      "A company brings in a specialist from overseas. They need premium accommodation while they find their feet — near international schools, good transport links, and in a safe neighbourhood.",
-    timeframe: "3–18 months typical",
-  },
+const INCLUDED = [
+  { ic: 'home', title: 'Furnishing', body: 'Designer specified furniture, lighting, soft furnishings, art and homewares. Every apartment looks and feels finished.' },
+  { ic: 'broom', title: 'Cleaning', body: 'Weekly housekeeping, linen change and towel refresh. Deep clean on every changeover.' },
+  { ic: 'wifi', title: 'Fibre internet', body: 'Dedicated 200 Mbps fibre line per unit. Mesh WiFi. Speed tested before every check in.' },
+  { ic: 'bolt', title: 'Backup power', body: 'Inverter and UPS in every unit. Lights, internet, fridge and one workstation stay live through outages.' },
+  { ic: 'droplet', title: 'Water backup', body: 'JoJo tank with pressure pump on every property. 24 hours of supply on hand.' },
+  { ic: 'wrench', title: 'Maintenance', body: 'Four hour response SLA for any reported issue. On call technicians for plumbing, electrical and appliances.' },
+  { ic: 'headset', title: '24 / 7 support', body: 'Named account manager during the day. A live duty line for evenings, weekends and holidays.' },
+  { ic: 'invoice', title: 'Invoicing', body: 'Monthly VAT invoice in your format. PO matched. Statement available on demand.' },
+  { ic: 'user', title: 'Account management', body: 'One person owns your relationship. Quarterly business review. Annual portfolio audit.' },
 ];
 
-const comparison = [
-  { feature: "Minimum stay", hotel: "1 night", hostsy: "30 days" },
-  { feature: "Living space", hotel: "Studio room (30–40 m²)", hostsy: "Full apartment (50–120 m²)" },
-  { feature: "Kitchen", hotel: "No / mini-kitchen", hostsy: "Full equipped kitchen" },
-  { feature: "Laundry", hotel: "Paid laundry service", hostsy: "In-unit washing machine" },
-  { feature: "Workspace", hotel: "Desk in room", hostsy: "Dedicated workspace" },
-  { feature: "Cost per night (30d stay)", hotel: "R3,500–R5,000", hostsy: "R1,800–R2,500" },
-  { feature: "Invoicing", hotel: "Daily hotel folio", hostsy: "Monthly corporate invoice" },
-  { feature: "Flexibility", hotel: "Book per night", hostsy: "Monthly, extendable" },
-  { feature: "Management", hotel: "Hotel front desk", hostsy: "Dedicated account manager" },
+const GRADES = [
+  { grade: 'Hostsy Studio', img: BEDROOM_IMG, sqm: '42 to 56 sqm', beds: '1 bed · 1 bath', price: 'from R 32,000 / mo', body: 'For single executives on assignment. Compact, beautifully appointed, work ready.' },
+  { grade: 'Hostsy Residence', img: LIVING_IMG, sqm: '65 to 95 sqm', beds: '1 or 2 bed · 2 bath', price: 'from R 48,000 / mo', body: 'Our flagship grade. The unit your COO walks into. Separate living, dining and workspace.' },
+  { grade: 'Hostsy Family', img: DINING_IMG, sqm: '110 to 180 sqm', beds: '3 bed · 2 to 3 bath', price: 'from R 78,000 / mo', body: 'For executives relocating with family. Near international schools. Garden or pool where available.' },
 ];
 
 export default function CorporateHousingPage() {
   return (
-    <div className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="relative bg-[#0B1F3E] pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1920&q=80"
-            alt="Premium furnished apartment"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-15"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3E] to-[#0B1F3E]/80" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Badge
-            variant="outline"
-            className="mb-6 border-[#C8A86C]/50 text-[#C8A86C] bg-[#C8A86C]/10 font-medium tracking-wide text-xs uppercase"
-          >
-            The Offering
-          </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5 max-w-3xl">
-            Corporate Housing:
-            <span className="block text-[#C8A86C]">What It Is &amp; Why It Works</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8 font-light">
-            A furnished, fully managed apartment on a monthly basis — built for companies placing
-            employees, executives, and teams in a new city.
-          </p>
-          <Link href="/contact#request">
-            <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-              Request Accommodation
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+    <main>
+      <PageHeroBlock
+        index="02 / 07"
+        label="Corporate housing"
+        title={<>Apartments engineered for <em>long stays</em>.</>}
+        sub="Corporate housing is the operational alternative to hotels for any stay beyond a few weeks. A fully furnished apartment, professionally managed end to end, contracted business to business, billed monthly. This is the category Hostsy is built around."
+      />
 
-      {/* What is corporate housing */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                Definition
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-                What Is Corporate Housing?
-              </h2>
-              <div className="space-y-5 text-gray-600 leading-relaxed text-base">
-                <p>
-                  Corporate housing is a fully furnished apartment rented on a monthly basis to
-                  companies for their employees. Unlike a hotel room, it offers the full space and
-                  functionality of a home — kitchen, living area, dedicated workspace, laundry.
-                </p>
-                <p>
-                  Unlike Airbnb or short-term rentals, corporate housing is professionally managed,
-                  consistently maintained, and invoiced directly to your company. It is designed
-                  specifically for operational use — not tourism.
-                </p>
-                <p>
-                  It exists in the space between a hotel (too expensive and too small for long
-                  stays) and a permanent lease (too inflexible, too much admin). For stays of 30
-                  days or more, it is almost always the right solution.
-                </p>
-              </div>
+      {/* The category */}
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="01" name="The category" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
             </div>
-            <div className="relative">
-              <Image
-                src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80"
-                alt="Corporate apartment bedroom"
-                width={600}
-                height={450}
-                className="rounded-xl object-cover w-full shadow-lg"
-              />
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>
+                Not a hotel.<br />
+                Not a short let.<br />
+                Not a rental contract.
+              </h2>
+              <p className="lede" style={{ marginTop: 28 }}>
+                Corporate housing sits between hospitality and residential leasing. The apartment behaves like a home. The contract behaves like procurement. Hostsy operates the unit on your behalf so neither the employee nor the company has to think about it.
+              </p>
+              <div className="grid-3" style={{ marginTop: 56, gap: 28 }}>
+                {[
+                  { h: 'Hotel', p: 'Right for 1 to 14 nights. Wrong on price and lifestyle beyond.' },
+                  { h: 'Short let', p: 'Inconsistent quality, consumer billing, weak guarantees, no support.' },
+                  { h: 'Corporate housing', p: 'Designed for 30 nights to 36 months. Operated. Invoiced. Guaranteed.' },
+                ].map(c => (
+                  <div key={c.h}>
+                    <span className="label label--brass">{c.h}</span>
+                    <p style={{ marginTop: 10, fontFamily: 'var(--f-display)', fontSize: 20, lineHeight: 1.32 }}>{c.p}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Use cases */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-14">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              Use Cases
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              Who Uses Corporate Housing
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Corporate housing is the right solution for any company placing employees in Gauteng
-              for 30 days or more.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {scenarios.map((scenario) => (
-              <div key={scenario.title} className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 bg-[#0B1F3E]/5 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <scenario.icon className="w-5 h-5 text-[#C8A86C]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#0B1F3E] text-lg">{scenario.title}</h3>
-                    <span className="text-[#C8A86C] text-xs font-medium">{scenario.timeframe}</span>
-                  </div>
+      <section className="section on-ink">
+        <div className="wrap">
+          <Kicker num="02" name="Who it serves" light />
+          <h2 className="h-1" style={{ margin: '24px 0 64px', maxWidth: '20ch' }}>Five briefs we handle every week.</h2>
+          <div className="grid-2" style={{ gap: 56 }}>
+            {USE_CASES.map((s, i) => (
+              <div key={i} style={{ borderTop: '1px solid rgba(241,235,222,0.18)', paddingTop: 28 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 18 }}>
+                  <span className="label" style={{ color: 'var(--brass)' }}>{s.label}</span>
+                  <span className="chip">{s.tag}</span>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed">{scenario.description}</p>
+                <h3 className="h-3" style={{ margin: 0, color: 'var(--ivory)' }}>{s.title}</h3>
+                <p style={{ color: 'rgba(241,235,222,0.78)', marginTop: 14, marginBottom: 0, fontSize: 15.5, lineHeight: 1.55 }}>{s.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-14">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              What&apos;s Included
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              Every Service, Included
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              One monthly rate covers everything. No surprise extras, no separate bills, no admin
-              for your HR team.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="p-6 border border-gray-100 rounded-xl hover:border-[#C8A86C]/40 hover:shadow-sm transition-all"
-              >
-                <service.icon className="w-7 h-7 text-[#C8A86C] mb-4" />
-                <h3 className="font-bold text-[#0B1F3E] mb-2">{service.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison table */}
-      <section className="py-20 md:py-28 bg-[#0B1F3E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-12">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              Why Not a Hotel
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-5">
-              Corporate Housing vs. Hotels
-            </h2>
-            <p className="text-white/60 text-lg leading-relaxed">
-              For stays of 30+ days, the comparison is clear.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="text-left py-4 px-4 text-white/50 text-xs font-semibold uppercase tracking-widest">
-                    Feature
-                  </th>
-                  <th className="text-left py-4 px-4 text-white/50 text-xs font-semibold uppercase tracking-widest">
-                    Business Hotel
-                  </th>
-                  <th className="text-left py-4 px-4 text-[#C8A86C] text-xs font-semibold uppercase tracking-widest">
-                    Hostsy Corporate
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((row, i) => (
-                  <tr key={row.feature} className={i % 2 === 0 ? "bg-white/[0.03]" : ""}>
-                    <td className="py-4 px-4 text-white/70 text-sm font-medium">{row.feature}</td>
-                    <td className="py-4 px-4 text-white/40 text-sm">{row.hotel}</td>
-                    <td className="py-4 px-4 text-white text-sm font-medium">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A86C] flex-shrink-0" />
-                        {row.hostsy}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-50 border border-gray-100 rounded-2xl p-10 md:p-14 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-[#0B1F3E] mb-4 tracking-tight">
-              Ready to Place Your Next Employee?
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed max-w-xl mx-auto mb-8">
-              Tell us your location, timeframe, and requirements. We&apos;ll respond within 4
-              business hours.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact#request">
-                <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-                  Request Accommodation
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/hr-mobility">
-                <Button
-                  variant="outline"
-                  className="border-[#0B1F3E] text-[#0B1F3E] hover:bg-[#0B1F3E] hover:text-white px-8"
-                >
-                  HR &amp; Mobility Info
-                </Button>
-              </Link>
+      {/* Included */}
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="03" name="What is included" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Every line item, in one monthly invoice.</h2>
+              <p className="lede" style={{ marginTop: 28 }}>A Hostsy apartment is an inclusive rate. No per night surcharges. No surprise extras. Cleaning, internet, power backup and maintenance are not add ons. They are the product.</p>
             </div>
           </div>
+          <div className="grid-3" style={{ marginTop: 64, gap: 0, borderTop: '1px solid var(--line)' }}>
+            {INCLUDED.map((s, i) => (
+              <div key={i} style={{ padding: '32px 28px', borderRight: i % 3 !== 2 ? '1px solid var(--line)' : 0, borderBottom: '1px solid var(--line)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                  <IconBadge name={s.ic} tone="brass" size={44} />
+                  <span className="label label--brass">Included</span>
+                </div>
+                <h4 className="h-3" style={{ margin: '10px 0 12px' }}>{s.title}</h4>
+                <p style={{ color: 'var(--muted)', margin: 0, fontSize: 14.5, lineHeight: 1.55 }}>{s.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* Image break */}
+      <section style={{ position: 'relative', height: 440, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${WORKSPACE_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,31,51,0.15), rgba(11,31,51,0.6))' }}></div>
+        <div className="wrap" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', paddingBottom: 40, color: 'var(--ivory)' }}>
+          <div>
+            <p className="label" style={{ color: 'rgba(241,235,222,0.7)' }}>BROOKLYN · PRETORIA</p>
+            <p className="h-3" style={{ margin: '10px 0 0', maxWidth: '32ch' }}>Workspaces engineered for an engineer&apos;s eight month deployment, not a tourist&apos;s weekend.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Apartment grades */}
+      <section className="section on-sand">
+        <div className="wrap">
+          <Kicker num="04" name="Apartment grades" />
+          <h2 className="h-1" style={{ margin: '24px 0 56px', maxWidth: '22ch' }}>Three operational grades. Same standard, different scale.</h2>
+          <div className="grid-3">
+            {GRADES.map((g, i) => (
+              <div key={i} className="aptcard">
+                <div className="aptcard__img" style={{ backgroundImage: `url(${g.img})`, height: 320 }}>
+                  <span className="aptcard__pill">{g.grade}</span>
+                </div>
+                <div>
+                  <div className="aptcard__meta" style={{ marginBottom: 8 }}>
+                    <span className="aptcard__title">{g.grade}</span>
+                  </div>
+                  <p style={{ margin: '0 0 14px', color: 'var(--muted)', fontSize: 14.5, lineHeight: 1.55 }}>{g.body}</p>
+                  <div className="aptcard__row">
+                    <span>{g.beds}</span><span>{g.sqm}</span><span>{g.price}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Operational architecture */}
+      <section className="section on-ink">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="05" name="Operational architecture" light />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>An operator, not a marketplace.</h2>
+              <p className="lede" style={{ marginTop: 28, color: 'rgba(241,235,222,0.78)' }}>Hostsy directly leases or manages every apartment in our portfolio. We control the standard, the staff and the supply chain. This is what allows us to make hard promises and keep them.</p>
+            </div>
+          </div>
+          <div style={{ marginTop: 80 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 16, marginBottom: 32 }}>
+              <h3 className="h-2" style={{ margin: 0, fontSize: 'clamp(24px, 2.6vw, 34px)', maxWidth: '30ch' }}>A typical placement, day by day.</h3>
+              <span className="label label--ivory-muted">From intake to ongoing stay · 7 working days</span>
+            </div>
+            <Timeline light />
+          </div>
+          <div className="specs" style={{ marginTop: 80 }}>
+            <Spec k="Portfolio model" v="Master lease + direct manage" />
+            <Spec k="Properties under management" v="220 apartments" />
+            <Spec k="In-house operations team" v="34 staff across PTA + JHB" />
+            <Spec k="Housekeeping cadence" v="Weekly per unit" />
+            <Spec k="Maintenance response" v="4 hours, contractual" />
+            <Spec k="Quality audit cadence" v="Monthly walk through" />
+            <Spec k="Pre arrival checklist" v="78 line items" />
+            <Spec k="Backup power coverage" v="100% of portfolio" />
+            <Spec k="Insurance" v="Public liability R 50m" />
+            <Spec k="Compliance" v="POPIA, B-BBEE, VAT" />
+          </div>
+        </div>
+      </section>
+
+      <CtaBand
+        kicker={{ num: '06', name: 'Brief us' }}
+        headline={<span>One placement or one hundred. The brief is the start.</span>}
+        sub="Tell us who is moving, where they are going and for how long. We come back inside 48 hours."
+        primary={{ label: 'Request Accommodation', to: '/contact' }}
+        secondary={{ label: 'View Locations', to: '/locations' }}
+        bg={CITY_NIGHT}
+      />
+    </main>
   );
 }

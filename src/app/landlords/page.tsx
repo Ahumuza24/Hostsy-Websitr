@@ -1,392 +1,203 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import LocalFeedbackForm from "@/components/forms/LocalFeedbackForm";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  CheckCircle2,
-  ArrowRight,
-  Shield,
-  TrendingUp,
-  Home,
-  Users,
-  Clock,
-  Wrench,
-} from "lucide-react";
+import { Fragment } from 'react';
+import type { Metadata } from 'next';
+import { Kicker, Stat, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
+import { IconBadge } from '@/components/shared/Icons';
 
 export const metadata: Metadata = {
-  title: "For Landlords — Guaranteed Rent & Zero Vacancy with Corporate Tenants",
-  description:
-    "Partner with Hostsy for guaranteed monthly rent, vetted corporate tenants, and full property management. We take a master lease on quality furnished apartments in Gauteng.",
+  title: 'For Landlords — Guaranteed Rent Partnership | Hostsy',
+  description: 'Master lease your premium apartment to Hostsy. Fixed guaranteed monthly rent. No vacancy risk, no tenant risk, no maintenance burden. Professional corporate tenants only.',
 };
 
-const benefits = [
-  {
-    icon: TrendingUp,
-    title: "Guaranteed Monthly Rent",
-    description:
-      "We pay you a fixed monthly amount regardless of occupancy. No late payments, no vacancies, no chasing tenants.",
-  },
-  {
-    icon: Users,
-    title: "Vetted Corporate Tenants",
-    description:
-      "Your apartment is occupied by employed professionals from reputable companies — executives, project teams, and diplomatic staff.",
-  },
-  {
-    icon: Shield,
-    title: "Full Property Management",
-    description:
-      "We handle maintenance, inspections, cleaning, and tenant management. Your property is managed to a high standard throughout.",
-  },
-  {
-    icon: Home,
-    title: "Long-Term Occupancy",
-    description:
-      "Corporate stays typically run 3–18 months. Our master lease agreements run 12–36 months, providing stable long-term occupancy.",
-  },
-  {
-    icon: Clock,
-    title: "Low Vacancy Risk",
-    description:
-      "Because we operate a managed portfolio, transitions between tenants are handled seamlessly. Vacancy gaps are minimised or eliminated.",
-  },
-  {
-    icon: Wrench,
-    title: "Property Care",
-    description:
-      "Corporate tenants treat apartments as a professional responsibility. Combined with our maintenance protocols, your property is well cared for.",
-  },
+const BUILDING_IMG = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=80';
+
+const PROPOSITION_CARDS = [
+  { ic: 'coin', num: 'A', title: 'Guaranteed rent', body: 'A fixed monthly rental, paid by EFT on the first business day. The number does not depend on whether the apartment is occupied that month.' },
+  { ic: 'briefcase', num: 'B', title: 'Professional tenants', body: 'Only corporate, diplomatic and project team guests, vetted, contracted and accountable to their employer. Never private leisure traffic.' },
+  { ic: 'shield', num: 'C', title: 'Property care', body: 'We hold the unit to a higher standard than most private tenants would. Monthly walk throughs. Quarterly deep clean. End of term make good.' },
+  { ic: 'clock', num: 'D', title: 'Long term occupancy', body: 'Hostsy contracts run 24 to 36 months with renewal options. You replace tenant churn with a single institutional relationship.' },
+  { ic: 'chart', num: 'E', title: 'Predictable income', body: 'Forecast your rental income three years out. Plan refinancing, retirement income or portfolio expansion against a known number.' },
+  { ic: 'check', num: 'F', title: 'Zero operational load', body: 'No estate agent. No tenant calls. No leaking taps at 11pm. The first phone call you take is the one where we extend the contract.' },
 ];
 
-const requirements = [
-  "Fully furnished or unfurnished (we can furnish)",
-  "1, 2, or 3 bedroom apartments preferred",
-  "Modern finishes and condition",
-  "Safe, secure building or complex",
-  "Located in target areas",
-  "Reliable water and power infrastructure",
+const COMPARE_ROWS = [
+  ['Counterparty', 'Individual tenant', 'Hostsy (corporate)'],
+  ['Lease term', '12 months, often shorter', '24 to 36 months'],
+  ['Monthly income', 'Variable, gap risk', 'Fixed, guaranteed'],
+  ['Vacancy risk', 'Owner carries', 'Hostsy carries'],
+  ['Tenant churn', 'Annual, with costs', 'Multi year contract'],
+  ['Maintenance', 'Owner coordinates', 'Hostsy absorbs'],
+  ['Property condition', 'Tenant grade', 'Operator grade'],
+  ['Agent commission', '1 month per renewal', 'None'],
+  ['Time spent monthly', '2 to 6 hours', 'Zero'],
 ];
 
-const targetAreas = [
-  {
-    city: "Pretoria",
-    suburbs: ["Waterkloof", "Brooklyn", "Arcadia", "Lynnwood", "Menlyn", "Hatfield"],
-  },
-  {
-    city: "Johannesburg",
-    suburbs: ["Sandton", "Rosebank", "Illovo", "Morningside", "Melrose"],
-  },
+const AREAS = [
+  { area: 'Waterkloof', note: 'Embassy belt. Family executives.', offer: 'R 42k to R 78k' },
+  { area: 'Brooklyn', note: 'Diplomatic + corporate adjacency.', offer: 'R 36k to R 62k' },
+  { area: 'Arcadia', note: 'Heritage. Embassy infrastructure.', offer: 'R 28k to R 48k' },
+  { area: 'Lynnwood', note: 'Family. International schools.', offer: 'R 32k to R 58k' },
+  { area: 'Sandton', note: 'Banking. Consulting. Executive.', offer: 'R 44k to R 95k' },
+  { area: 'Rosebank', note: 'Gautrain. Young professionals.', offer: 'R 32k to R 65k' },
 ];
 
-const process = [
-  {
-    step: "01",
-    title: "Submit Your Property",
-    description:
-      "Complete the form below. Tell us about your apartment — location, size, condition, and your requirements.",
-  },
-  {
-    step: "02",
-    title: "Property Assessment",
-    description:
-      "Our team reviews your submission and arranges a viewing. We assess the property against our quality and location criteria.",
-  },
-  {
-    step: "03",
-    title: "Offer & Agreement",
-    description:
-      "We present a guaranteed monthly rental offer. If accepted, we sign a master lease agreement — typically 12–36 months.",
-  },
-  {
-    step: "04",
-    title: "We Take Over",
-    description:
-      "We furnish if needed, prepare the apartment, and start placing corporate tenants. You receive your guaranteed rent monthly.",
-  },
+const PROCESS_STEPS = [
+  { n: '01', h: 'Submit', p: 'Send your property details, photographs and indicative expectation.' },
+  { n: '02', h: 'Survey', p: 'We visit, walk the unit, walk the building, talk to the body corporate.' },
+  { n: '03', h: 'Offer', p: 'You receive a written master lease offer with rental, term and conditions.' },
+  { n: '04', h: 'Contract', p: 'Lease executed. We onboard the apartment to Hostsy specification.' },
+  { n: '05', h: 'Income', p: 'First rental hits your account on the first business day of the next month.' },
 ];
 
 export default function LandlordsPage() {
   return (
-    <div className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="relative bg-[#0B1F3E] pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1920&q=80"
-            alt="Modern apartment building"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-15"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3E] to-[#0B1F3E]/80" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Badge
-            variant="outline"
-            className="mb-6 border-[#C8A86C]/50 text-[#C8A86C] bg-[#C8A86C]/10 font-medium tracking-wide text-xs uppercase"
-          >
-            Landlord Partnership
-          </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5 max-w-3xl">
-            Guaranteed Rent.
-            <span className="block text-[#C8A86C]">Zero Vacancy. Zero Hassle.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8 font-light">
-            We take a master lease on your apartment and fill it with vetted corporate tenants.
-            You receive a guaranteed monthly rental — whether occupied or not.
-          </p>
-          <Link href="#partner-form">
-            <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-              Submit Your Property
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
+    <main>
+      <PageHeroBlock
+        index="04 / 07"
+        label="For landlords"
+        title={<>A <em>guaranteed</em> rent partnership for premium apartments.</>}
+        sub="If you own a quality apartment in Brooklyn, Waterkloof, Arcadia, Lynnwood, Sandton or Rosebank, Hostsy will master lease it. You receive a fixed monthly rental for the term of the agreement. We carry every other line on the page."
+      />
+
+      {/* Stats */}
+      <section className="section">
+        <div className="wrap">
+          <div className="stats">
+            <Stat value="R 38k" label="Indicative guaranteed monthly on a Brooklyn two bedroom" />
+            <Stat value="36" suffix="mo" label="Typical master lease term, with renewal option" />
+            <Stat value="0" label="Vacancy risk carried by the property owner" />
+            <Stat value="100" suffix="%" label="Maintenance, marketing and management absorbed by Hostsy" />
+          </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-14">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              Why Partner With Us
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              A Better Way to Rent Your Property
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              No more tenant screening, chasing payments, or dealing with maintenance calls. Hostsy
-              manages everything — you get the rent.
-            </p>
+      {/* Proposition */}
+      <section className="section on-ink">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="01" name="The proposition" light />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Trade the highs and lows of private letting for a single number on the first of every month.</h2>
+              <p className="lede" style={{ marginTop: 28, color: 'rgba(241,235,222,0.78)' }}>Private letting can yield well in good months. It can also sit empty for two. Hostsy is the alternative. A long term corporate counterparty who takes the keys, takes the risk and writes you the same cheque every month.</p>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit) => (
-              <div
-                key={benefit.title}
-                className="group p-8 border border-gray-100 rounded-xl hover:border-[#C8A86C]/40 hover:shadow-md transition-all duration-300"
-              >
-                <div className="w-12 h-12 bg-[#0B1F3E]/5 rounded-lg flex items-center justify-center mb-5 group-hover:bg-[#C8A86C]/10 transition-colors">
-                  <benefit.icon className="w-6 h-6 text-[#0B1F3E] group-hover:text-[#C8A86C] transition-colors" />
+          <div className="grid-3" style={{ marginTop: 72, gap: 0, borderTop: '1px solid rgba(241,235,222,0.18)' }}>
+            {PROPOSITION_CARDS.map((s, i) => (
+              <div key={s.num} style={{ padding: '36px 28px', borderRight: i % 3 !== 2 ? '1px solid rgba(241,235,222,0.18)' : 0, borderBottom: '1px solid rgba(241,235,222,0.18)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                  <IconBadge name={s.ic} tone="ivory" size={48} />
+                  <span style={{ fontFamily: 'var(--f-display)', fontSize: 36, fontWeight: 300, color: 'var(--brass)', letterSpacing: '-0.02em', lineHeight: 1 }}>{s.num}</span>
                 </div>
-                <h3 className="font-bold text-[#0B1F3E] text-lg mb-3">{benefit.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{benefit.description}</p>
+                <h4 className="h-3" style={{ margin: '10px 0 12px', color: 'var(--ivory)' }}>{s.title}</h4>
+                <p style={{ color: 'rgba(241,235,222,0.72)', margin: 0, fontSize: 14.5, lineHeight: 1.55 }}>{s.body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison */}
+      <section className="section on-sand">
+        <div className="wrap">
+          <Kicker num="03" name="Versus a private let" />
+          <h2 className="h-1" style={{ margin: '24px 0 56px', maxWidth: '22ch' }}>What changes when you switch.</h2>
+          <div className="compare">
+            <div className="col label head">&nbsp;</div>
+            <div className="col head">Private let</div>
+            <div className="col hostsy head">
+              <span style={{ width: 8, height: 8, borderRadius: 999, background: 'var(--brass)' }}></span>
+              Hostsy master lease
+            </div>
+            {COMPARE_ROWS.map(([k, h, hs], i) => (
+              <Fragment key={i}>
+                <div className="col label">{k}</div>
+                <div className="col"><span className="x">○</span> {h}</div>
+                <div className="col hostsy"><span className="check">●</span> {hs}</div>
+              </Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Target areas */}
+      <section className="section">
+        <div className="wrap">
+          <Kicker num="04" name="Where we are buying lease capacity" />
+          <h2 className="h-1" style={{ margin: '24px 0 24px', maxWidth: '22ch' }}>Six neighbourhoods, actively expanding.</h2>
+          <p className="lede" style={{ marginBottom: 56 }}>If your property sits inside one of the following postcodes and meets our specification, we can typically present an indicative master lease offer within 5 working days.</p>
+          <div className="grid-3">
+            {AREAS.map(a => (
+              <div key={a.area} style={{ border: '1px solid var(--line)', padding: 28, background: 'var(--ivory)' }}>
+                <span className="label label--brass">Active intake</span>
+                <h3 className="h-2" style={{ margin: '14px 0 12px', fontSize: 'clamp(28px, 3vw, 40px)' }}>{a.area}</h3>
+                <p style={{ color: 'var(--muted)', margin: '0 0 24px', fontSize: 14.5 }}>{a.note}</p>
+                <div style={{ paddingTop: 18, borderTop: '1px solid var(--line)' }}>
+                  <span className="label label--muted">Indicative monthly</span>
+                  <p style={{ margin: '6px 0 0', fontFamily: 'var(--f-display)', fontSize: 22, letterSpacing: '-0.01em' }}>{a.offer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Property criteria */}
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="05" name="Property criteria" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>What we look for in a building.</h2>
+              <p className="lede" style={{ marginTop: 28 }}>Hostsy operates a curated portfolio. We do not take every apartment that is offered. The buildings we partner with share a small set of characteristics that materially affect the experience of long stay corporate guests.</p>
+            </div>
+          </div>
+          <div className="specs" style={{ marginTop: 64 }}>
+            <Spec k="Building age" v="Less than 15 years preferred" />
+            <Spec k="Apartment size" v="Minimum 42 sqm internal" />
+            <Spec k="Layout" v="Separate living and bedroom" />
+            <Spec k="Finishes" v="Move in condition or better" />
+            <Spec k="Security" v="24 hr access control" />
+            <Spec k="Backup power" v="Building generator preferred" />
+            <Spec k="Parking" v="Minimum 1 bay per unit" />
+            <Spec k="Fibre" v="Building fibre infrastructure" />
+            <Spec k="Lift" v="Required above 3rd floor" />
+            <Spec k="Body corporate" v="Well managed, no arrears" />
+            <Spec k="Levies" v="Current and predictable" />
+            <Spec k="Title" v="Sectional title, freehold or block" />
           </div>
         </div>
       </section>
 
       {/* Process */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mb-14">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              Partnership Process
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight">
-              How the Partnership Works
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {process.map((step) => (
-              <div key={step.step} className="bg-white p-7 rounded-xl border border-gray-100 shadow-sm">
-                <div className="text-4xl font-black text-[#C8A86C]/30 mb-4 leading-none">
-                  {step.step}
-                </div>
-                <h3 className="font-bold text-[#0B1F3E] text-lg mb-3">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
+      <section className="section on-ink">
+        <div className="wrap">
+          <Kicker num="06" name="Becoming a partner landlord" light />
+          <h2 className="h-1" style={{ margin: '24px 0 64px', maxWidth: '22ch' }}>From inquiry to first rental, in <em>30 days</em>.</h2>
+          <div className="process" style={{ borderTopColor: 'rgba(241,235,222,0.18)' }}>
+            {PROCESS_STEPS.map(s => (
+              <div key={s.n} className="step" style={{ borderRightColor: 'rgba(241,235,222,0.18)', borderBottomColor: 'rgba(241,235,222,0.18)' }}>
+                <span className="num">{s.n}</span>
+                <h4>{s.h}</h4>
+                <p style={{ color: 'rgba(241,235,222,0.66)' }}>{s.p}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Requirements & Areas */}
-      <section className="py-20 md:py-28 bg-[#0B1F3E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                What We&apos;re Looking For
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight mb-5">
-                Property Requirements
-              </h2>
-              <p className="text-white/60 text-lg leading-relaxed mb-8">
-                We&apos;re selective about the properties we take on. Quality is our commitment to
-                corporate clients.
-              </p>
-              <ul className="space-y-3">
-                {requirements.map((req) => (
-                  <li key={req} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#C8A86C] flex-shrink-0" />
-                    <span className="text-white/70 text-sm">{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                Where We Operate
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight mb-5">
-                Target Areas
-              </h2>
-              <p className="text-white/60 text-lg leading-relaxed mb-8">
-                We actively seek properties in established corporate and executive suburbs in
-                Pretoria and Johannesburg.
-              </p>
-              <div className="space-y-6">
-                {targetAreas.map((area) => (
-                  <div key={area.city}>
-                    <h3 className="text-white font-bold mb-3">{area.city}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {area.suburbs.map((suburb) => (
-                        <span
-                          key={suburb}
-                          className="text-[#C8A86C] text-xs border border-[#C8A86C]/40 px-3 py-1.5 rounded-md"
-                        >
-                          {suburb}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Partner form */}
-      <section id="partner-form" className="py-20 md:py-28 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-              Get Started
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-4">
-              Submit Your Property
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Fill in the details below and our team will be in touch within 2 business days.
-            </p>
-          </div>
-
-          <LocalFeedbackForm
-            className="space-y-5 bg-gray-50 border border-gray-100 rounded-2xl p-8"
-            successTitle="Property details received."
-            successMessage="Thanks. The form is working and would route this property lead to Hostsy in production. For the presentation, no data is stored."
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="p-name"
-                  className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                >
-                  Full Name *
-                </label>
-                <Input id="p-name" name="name" placeholder="Your full name" required />
-              </div>
-              <div>
-                <label
-                  htmlFor="p-email"
-                  className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                >
-                  Email Address *
-                </label>
-                <Input id="p-email" name="email" type="email" placeholder="you@email.com" required />
-              </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="p-phone"
-                className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-              >
-                Phone Number *
-              </label>
-              <Input id="p-phone" name="phone" type="tel" placeholder="+27 67 818 2968" required />
-            </div>
-
-            <div>
-              <label
-                htmlFor="p-address"
-                className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-              >
-                Property Address / Area *
-              </label>
-              <Input id="p-address" name="address" placeholder="e.g. Waterkloof, Pretoria" required />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="p-bedrooms"
-                  className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                >
-                  Number of Bedrooms *
-                </label>
-                <Input id="p-bedrooms" name="bedrooms" placeholder="e.g. 2" type="number" min="1" required />
-              </div>
-              <div>
-                <label
-                  htmlFor="p-furnished"
-                  className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                >
-                  Furnished Status *
-                </label>
-                <Input id="p-furnished" name="furnishedStatus" placeholder="Fully / Partly / Unfurnished" required />
-              </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="p-asking"
-                className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-              >
-                Expected Monthly Rental (ZAR)
-              </label>
-              <Input id="p-asking" name="expectedRental" placeholder="e.g. R 18,000" />
-            </div>
-
-            <div>
-              <label
-                htmlFor="p-notes"
-                className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-              >
-                Additional Notes
-              </label>
-              <Textarea
-                id="p-notes"
-                name="notes"
-                placeholder="Tell us anything else about your property..."
-                rows={4}
-              />
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold py-3"
-            >
-              Submit Property Details
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-
-            <p className="text-gray-400 text-xs text-center">
-              We&apos;ll respond within 2 business days. All enquiries are treated confidentially.
-            </p>
-          </LocalFeedbackForm>
-        </div>
-      </section>
-    </div>
+      <CtaBand
+        kicker={{ num: '07', name: 'Submit your property' }}
+        headline={<span>Send us the unit. We will <em>send back</em> an offer in five days.</span>}
+        sub="If your property fits, we move quickly. If it doesn't, we will tell you exactly why and what to change."
+        primary={{ label: 'Submit a property', to: '/contact' }}
+        secondary={{ label: 'Download landlord pack', to: '/contact' }}
+        bg={BUILDING_IMG}
+      />
+    </main>
   );
 }

@@ -1,278 +1,166 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { MapPin, ArrowRight, Building2, Users, Globe } from "lucide-react";
+import type { Metadata } from 'next';
+import { Kicker, CTA, Stat, PageHeroBlock } from '@/components/shared/primitives';
 
 export const metadata: Metadata = {
-  title: "Locations — Corporate Housing in Pretoria & Johannesburg",
-  description:
-    "Hostsy manages corporate apartments across Pretoria and Johannesburg. Waterkloof, Brooklyn, Arcadia, Sandton, Rosebank, and more.",
+  title: 'Locations — Pretoria & Johannesburg Corporate Housing | Hostsy',
+  description: '220 apartments across 8 neighbourhoods in Gauteng. Waterkloof, Brooklyn, Arcadia, Sandton, Rosebank and more. Premium corporate housing across Pretoria and Johannesburg.',
 };
 
-const pretoraLocations = [
-  {
-    name: "Waterkloof",
-    description:
-      "Pretoria's most prestigious residential suburb. Home to embassies, ambassadorial residences, and senior executives. Security-conscious with easy access to Union Buildings and the CBD.",
-    highlights: ["Diplomatic hub", "Top security estates", "Prestigious address", "Near Union Buildings"],
-    image:
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Brooklyn",
-    description:
-      "Upmarket suburb popular with professionals and executives. Excellent restaurants, shops, and business services. Close to Pretoria CBD and major arterials.",
-    highlights: ["Professional demographic", "Strong amenities", "Near CBD", "Safe environment"],
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6d5b8c48?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Arcadia",
-    description:
-      "Central Pretoria suburb with proximity to government departments, embassies, and the CBD. Practical for diplomatic placements and government-adjacent industries.",
-    highlights: ["Government proximity", "Diplomatic area", "CBD access", "Central location"],
-    image:
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Menlyn",
-    description:
-      "East Pretoria's commercial hub. Close to Menlyn Maine mixed-use development, ideal for corporate teams working in east Pretoria's growing business district.",
-    highlights: ["Business district", "Modern developments", "Retail & dining", "Growth area"],
-    image:
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
-  },
+const PTA_SKYLINE = 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=2000&q=80';
+const LIVING_IMG = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80';
+const BEDROOM_IMG = 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=900&q=80';
+const BALCONY_IMG = 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80';
+const KITCHEN_IMG = 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=80';
+const DINING_IMG = 'https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&w=900&q=80';
+const WORKSPACE_IMG = 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=900&q=80';
+
+const LOCATIONS = [
+  { city: 'Pretoria', name: 'Waterkloof', img: LIVING_IMG, units: 38, drive: '12 min CBD', tags: ['Embassy belt', 'Executive families', 'Quiet'], note: "Old money calm. Embassy infrastructure. Hostsy's largest Pretoria concentration." },
+  { city: 'Pretoria', name: 'Brooklyn', img: BEDROOM_IMG, units: 42, drive: '8 min CBD', tags: ['Diplomatic', 'Restaurants', 'Walkable'], note: 'Cafes, embassies and the University of Pretoria within walking distance. Our most requested address.' },
+  { city: 'Pretoria', name: 'Arcadia', img: BALCONY_IMG, units: 24, drive: '6 min CBD', tags: ['Heritage', 'Embassy row', 'Secure'], note: 'Heritage stock with embassy adjacency. Discreet, professional, well established.' },
+  { city: 'Pretoria', name: 'Menlyn', img: KITCHEN_IMG, units: 31, drive: '15 min CBD', tags: ['Family', 'Shopping', 'Schools'], note: 'Family ready three bedrooms near international schools and the Menlyn Maine business hub.' },
+  { city: 'Pretoria', name: 'Lynnwood', img: DINING_IMG, units: 18, drive: '14 min CBD', tags: ['Family', 'Schools', 'Mature'], note: 'Suburban calm with proximity to the Lynnwood Bridge corporate node.' },
+  { city: 'Pretoria', name: 'Hatfield', img: WORKSPACE_IMG, units: 22, drive: '5 min CBD', tags: ['Gautrain', 'University', 'Compact'], note: 'Compact units near the Gautrain. Used heavily for graduate programmes and shorter rotations.' },
+  { city: 'Johannesburg', name: 'Sandton', img: LIVING_IMG, units: 26, drive: '0 min CBD', tags: ['Banking', 'Consulting', 'Executive'], note: "Africa's financial capital. Walking distance to Standard Bank, Discovery, BCG and the JSE." },
+  { city: 'Johannesburg', name: 'Rosebank', img: BEDROOM_IMG, units: 19, drive: '8 min Sandton', tags: ['Gautrain', 'Restaurants', 'Co-work'], note: 'Pedestrian friendly. Strong restaurant scene. Direct Gautrain link to Sandton, Pretoria and OR Tambo.' },
 ];
 
-const johanLocations = [
-  {
-    name: "Sandton",
-    description:
-      "Africa's richest square mile. Home to JSE, major bank headquarters, multinational offices, and premium residential towers. The first choice for corporate executives in Johannesburg.",
-    highlights: ["Financial capital", "World-class amenities", "Corporate hub", "Premium apartments"],
-    image:
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Rosebank",
-    description:
-      "Upmarket mixed-use suburb with strong corporate presence. Popular with consulting firms, media companies, and professional services. Excellent walkability and lifestyle amenities.",
-    highlights: ["Mixed-use urban", "Consulting firms", "Great walkability", "Lifestyle amenities"],
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Illovo & Morningside",
-    description:
-      "Quiet, established residential suburbs close to Sandton. Preferred by senior executives who want a residential feel with easy access to the Sandton business district.",
-    highlights: ["Residential feel", "Senior executive area", "Near Sandton", "Established suburb"],
-    image:
-      "https://images.unsplash.com/photo-1560185127-6a7aa2f02bff?auto=format&fit=crop&w=800&q=80",
-  },
-];
+const PRETORIA = LOCATIONS.filter(l => l.city === 'Pretoria');
+const JOBURG = LOCATIONS.filter(l => l.city === 'Johannesburg');
 
 export default function LocationsPage() {
   return (
-    <div className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="relative bg-[#0B1F3E] pt-28 pb-20 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1577948000111-9c970dfe3743?auto=format&fit=crop&w=1920&q=80"
-            alt="Gauteng skyline"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-20"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F3E] to-[#0B1F3E]/80" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Badge
-            variant="outline"
-            className="mb-6 border-[#C8A86C]/50 text-[#C8A86C] bg-[#C8A86C]/10 font-medium tracking-wide text-xs uppercase"
-          >
-            Where We Operate
-          </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-5 max-w-3xl">
-            Corporate Housing Across
-            <span className="block text-[#C8A86C]">Gauteng&apos;s Key Corridors</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-8 font-light">
-            Premium furnished apartments in Pretoria and Johannesburg&apos;s most important
-            business and executive suburbs.
-          </p>
-          <Link href="/contact#request">
-            <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-              Request Accommodation
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
-        </div>
-      </section>
+    <main>
+      <PageHeroBlock
+        index="05 / 07"
+        label="Locations"
+        title={<>A curated map of corporate <em>Gauteng</em>.</>}
+        sub="Hostsy operates 220 apartments across eight neighbourhoods in Pretoria and Johannesburg. Each address was chosen for proximity to business, embassies, international schools, transit or all four."
+      />
 
-      <section className="bg-[#C8A86C] py-4">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-[#0B1F3E] font-bold text-sm md:text-base tracking-widest uppercase">
-            Pretoria · Johannesburg · Gauteng
-          </p>
+      <section className="section" style={{ paddingBottom: 0 }}>
+        <div className="wrap">
+          <div className="stats">
+            <Stat value="220" suffix="+" label="Apartments under management across Gauteng" />
+            <Stat value="8" label="Neighbourhoods directly served by Hostsy" />
+            <Stat value="2" label="Cities. Pretoria and Johannesburg, end to end." />
+            <Stat value="42" label="Embassies within 4 km of a Hostsy apartment" />
+          </div>
         </div>
       </section>
 
       {/* Pretoria */}
-      <section id="pretoria" className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-14">
-            <div className="flex items-center gap-3 mb-4">
-              <MapPin className="w-5 h-5 text-[#C8A86C]" />
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest">
-                City One
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="01" name="Pretoria" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+              <p className="label label--muted" style={{ marginTop: 24, fontFamily: 'var(--f-sans)', fontSize: 14, lineHeight: 1.6, letterSpacing: '0.02em', textTransform: 'none' }}>
+                The administrative capital. Home to over 130 diplomatic missions, the Union Buildings, the Reserve Bank and a large share of Africa&apos;s diplomatic infrastructure.
               </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              Pretoria
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl">
-              {[
-                {
-                  icon: Building2,
-                  title: "Administrative Capital",
-                  sub: "Government & public sector hub",
-                },
-                { icon: Globe, title: "Diplomatic Centre", sub: "150+ foreign missions" },
-                { icon: Users, title: "Corporate Growth", sub: "Mining, banking, pharma HQs" },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-3">
-                  <item.icon className="w-5 h-5 text-[#C8A86C] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-[#0B1F3E] text-sm">{item.title}</div>
-                    <div className="text-gray-500 text-xs">{item.sub}</div>
-                  </div>
-                </div>
-              ))}
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Six neighbourhoods.<br />One <em>capital</em>.</h2>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {pretoraLocations.map((loc) => (
-              <div
-                key={loc.name}
-                className="border border-gray-100 rounded-2xl overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <Image
-                  src={loc.image}
-                  alt={`${loc.name} corporate apartment`}
-                  width={600}
-                  height={280}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-7">
-                  <h3 className="text-xl font-black text-[#0B1F3E] mb-2">{loc.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{loc.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {loc.highlights.map((h) => (
-                      <span
-                        key={h}
-                        className="text-[#0B1F3E] bg-gray-50 text-xs px-2.5 py-1 rounded border border-gray-200"
-                      >
-                        {h}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          <div className="dir" style={{ marginTop: 64 }}>
+            {PRETORIA.map((l, i) => (
+              <div key={l.name} className="dir__row">
+                <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                <span className="name">{l.name}</span>
+                <span className="meta">{l.units} units</span>
+                <span className="meta">{l.drive}</span>
+                <span className="meta">{l.tags[0]} · {l.tags[1]}</span>
+                <span className="arrow">→</span>
               </div>
             ))}
+          </div>
+          <div className="grid-3" style={{ marginTop: 56 }}>
+            {PRETORIA.map(l => (
+              <div key={l.name} className="aptcard">
+                <div className="aptcard__img" style={{ backgroundImage: `url(${l.img})` }}>
+                  <span className="aptcard__pill">{l.units} units</span>
+                </div>
+                <div className="aptcard__meta">
+                  <span className="aptcard__title">{l.name}</span>
+                  <span className="aptcard__loc">{l.city}</span>
+                </div>
+                <div className="aptcard__row">{l.tags.map(t => <span key={t}>{t}</span>)}</div>
+                <p style={{ margin: '14px 16px 16px', color: 'var(--muted)', fontSize: 14, lineHeight: 1.5 }}>{l.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* City image break */}
+      <section style={{ height: 480, backgroundImage: `url(${PTA_SKYLINE})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(11,31,51,0.2), rgba(11,31,51,0.65))' }}></div>
+        <div className="wrap" style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', paddingBottom: 48, color: 'var(--ivory)' }}>
+          <div>
+            <p className="label" style={{ color: 'rgba(241,235,222,0.7)' }}>City profile · 02 / 02</p>
+            <h2 className="h-1" style={{ margin: '16px 0 0', maxWidth: '18ch' }}>Johannesburg.<br />The economic engine.</h2>
           </div>
         </div>
       </section>
 
       {/* Johannesburg */}
-      <section id="johannesburg" className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-14">
-            <div className="flex items-center gap-3 mb-4">
-              <MapPin className="w-5 h-5 text-[#C8A86C]" />
-              <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest">
-                City Two
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="02" name="Johannesburg" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+              <p className="label label--muted" style={{ marginTop: 24, fontFamily: 'var(--f-sans)', fontSize: 14, lineHeight: 1.6, letterSpacing: '0.02em', textTransform: 'none' }}>
+                Africa&apos;s financial capital. Hostsy&apos;s Johannesburg portfolio anchors in Sandton and Rosebank, the two nodes most in demand for financial services and consulting deployments.
               </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0B1F3E] leading-tight tracking-tight mb-5">
-              Johannesburg
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl">
-              {[
-                {
-                  icon: Building2,
-                  title: "Financial Capital",
-                  sub: "JSE, major banks & multinationals",
-                },
-                { icon: Users, title: "Business Hub", sub: "Consulting, mining, tech HQs" },
-                { icon: Globe, title: "International Access", sub: "OR Tambo 25 min from Sandton" },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-3">
-                  <item.icon className="w-5 h-5 text-[#C8A86C] flex-shrink-0 mt-0.5" />
-                  <div>
-                    <div className="font-semibold text-[#0B1F3E] text-sm">{item.title}</div>
-                    <div className="text-gray-500 text-xs">{item.sub}</div>
-                  </div>
-                </div>
-              ))}
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Two cities.<br />One <em>operator</em>.</h2>
             </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {johanLocations.map((loc) => (
-              <div
-                key={loc.name}
-                className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-md transition-shadow"
-              >
-                <Image
-                  src={loc.image}
-                  alt={`${loc.name} corporate apartment`}
-                  width={600}
-                  height={280}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-7">
-                  <h3 className="text-xl font-black text-[#0B1F3E] mb-2">{loc.name}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{loc.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {loc.highlights.map((h) => (
-                      <span
-                        key={h}
-                        className="text-[#0B1F3E] bg-gray-50 text-xs px-2.5 py-1 rounded border border-gray-200"
-                      >
-                        {h}
-                      </span>
-                    ))}
-                  </div>
+          <div className="dir" style={{ marginTop: 64 }}>
+            {JOBURG.map((l, i) => (
+              <div key={l.name} className="dir__row">
+                <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                <span className="name">{l.name}</span>
+                <span className="meta">{l.units} units</span>
+                <span className="meta">{l.drive}</span>
+                <span className="meta">{l.tags[0]} · {l.tags[1]}</span>
+                <span className="arrow">→</span>
+              </div>
+            ))}
+          </div>
+          <div className="grid-3" style={{ marginTop: 56 }}>
+            {JOBURG.map(l => (
+              <div key={l.name} className="aptcard">
+                <div className="aptcard__img" style={{ backgroundImage: `url(${l.img})` }}>
+                  <span className="aptcard__pill">{l.units} units</span>
                 </div>
+                <div className="aptcard__meta">
+                  <span className="aptcard__title">{l.name}</span>
+                  <span className="aptcard__loc">{l.city}</span>
+                </div>
+                <div className="aptcard__row">{l.tags.map(t => <span key={t}>{t}</span>)}</div>
+                <p style={{ margin: '14px 16px 16px', color: 'var(--muted)', fontSize: 14, lineHeight: 1.5 }}>{l.note}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-[#0B1F3E]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
-            Need Accommodation in a Specific Area?
-          </h2>
-          <p className="text-white/60 text-lg leading-relaxed max-w-xl mx-auto mb-8">
-            Tell us where your employee needs to be. We&apos;ll find the right apartment in the
-            right location.
-          </p>
-          <Link href="/contact#request">
-            <Button className="bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold px-8">
-              Request Accommodation
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </Link>
+      <section className="section on-ink">
+        <div className="wrap" style={{ textAlign: 'center' }}>
+          <Kicker num="·" name="Ready to place your employee?" light />
+          <h2 className="h-1" style={{ margin: '24px auto', maxWidth: '22ch' }}>Tell us the neighbourhood. We will tell you what we have <em>available</em>.</h2>
+          <p className="lede" style={{ color: 'rgba(241,235,222,0.78)', margin: '0 auto 40px', maxWidth: '50ch' }}>With 220 apartments across eight postcodes, we almost always have something close to where your employee needs to be.</p>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <CTA to="/contact" kind="brass" size="lg">Request availability</CTA>
+            <CTA to="/corporate-housing" kind="ghost-ivory" size="lg">Learn about our grades</CTA>
+          </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

@@ -1,360 +1,108 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import LocalFeedbackForm from "@/components/forms/LocalFeedbackForm";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react";
+import type { Metadata } from 'next';
+import { Kicker, LinkArr, PageHeroBlock } from '@/components/shared/primitives';
+import ContactForms from '@/components/forms/ContactForms';
 
 export const metadata: Metadata = {
-  title: "Contact Hostsy — Request Corporate Accommodation",
-  description:
-    "Submit an accommodation request or get in touch with the Hostsy team. We respond to all corporate housing enquiries within 4 business hours.",
+  title: 'Contact Hostsy — Request Accommodation or Submit a Property',
+  description: 'Tell us about your placement or property. Every inquiry receives a response from a named person, inside one working day.',
 };
+
+const DOWNLOADS = [
+  { tag: 'PDF · 12 pages · 3.4 MB', title: 'Corporate housing pack', body: 'Pricing, inclusions, service levels, sample MSA and case studies. The pack for HR, mobility and procurement.' },
+  { tag: 'PDF · 8 pages · 2.1 MB', title: 'Landlord master lease pack', body: 'Property criteria, offer template, sample lease and indicative rental ranges by neighbourhood.' },
+  { tag: 'PDF · 16 pages · 5.6 MB', title: 'Hostsy operations dossier', body: 'Inside the operation. Quality audit, maintenance SLA, housekeeping cadence, backup power architecture.' },
+];
 
 export default function ContactPage() {
   return (
-    <div className="overflow-x-hidden">
-      {/* Hero */}
-      <section className="bg-[#0B1F3E] pt-28 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Badge
-            variant="outline"
-            className="mb-6 border-[#C8A86C]/50 text-[#C8A86C] bg-[#C8A86C]/10 font-medium tracking-wide text-xs uppercase"
-          >
-            Get In Touch
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight mb-5 max-w-2xl">
-            Request Accommodation or
-            <span className="block text-[#C8A86C]">Talk to Our Team</span>
-          </h1>
-          <p className="text-lg text-white/70 leading-relaxed max-w-xl font-light">
-            Submit a requirement below or reach out directly. We respond to all enquiries within 4
-            business hours.
-          </p>
-        </div>
-      </section>
+    <main>
+      <PageHeroBlock
+        index="07 / 07"
+        label="Contact"
+        title={<>Tell us about <em>the placement</em>.</>}
+        sub="Whether you are an HR lead with a brief, a project director with a deployment or a landlord with an apartment, you are on the right page. Every inquiry receives a response from a named person, inside one working day."
+      />
 
-      {/* Contact info bar */}
-      <section className="bg-[#C8A86C] py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap gap-6 justify-center md:justify-start items-center">
-            <a
-              href="tel:+27678182968"
-              className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm hover:opacity-70 transition-opacity"
-            >
-              <Phone className="w-4 h-4" />
-              +27 67 818 2968
-            </a>
-            <a
-              href="mailto:admin@hostsy.co.za"
-              className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm hover:opacity-70 transition-opacity"
-            >
-              <Mail className="w-4 h-4" />
-              admin@hostsy.co.za
-            </a>
-            <span className="flex items-center gap-2 text-[#0B1F3E] font-semibold text-sm">
-              <Clock className="w-4 h-4" />
-              Mon–Fri, 8am–6pm SAST
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* Main content */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Sidebar */}
-            <div className="space-y-8">
-              <div>
-                <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-3">
-                  Contact Options
-                </p>
-                <h2 className="text-2xl font-black text-[#0B1F3E] leading-tight mb-3">
-                  How to Reach Us
-                </h2>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  Use the form for new accommodation requests. For urgent needs, call or WhatsApp
-                  directly.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-[#0B1F3E]/5 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Phone className="w-4 h-4 text-[#C8A86C]" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[#0B1F3E] text-sm">Phone</div>
-                    <a
-                      href="tel:+27678182968"
-                      className="text-gray-500 text-sm hover:text-[#C8A86C] transition-colors"
-                    >
-                      +27 67 818 2968
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-[#0B1F3E]/5 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Mail className="w-4 h-4 text-[#C8A86C]" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[#0B1F3E] text-sm">Email</div>
-                    <a
-                      href="mailto:admin@hostsy.co.za"
-                      className="text-gray-500 text-sm hover:text-[#C8A86C] transition-colors"
-                    >
-                      admin@hostsy.co.za
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-[#0B1F3E]/5 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <MapPin className="w-4 h-4 text-[#C8A86C]" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[#0B1F3E] text-sm">Operations</div>
-                    <div className="text-gray-500 text-sm">
-                      Pretoria &amp; Johannesburg, Gauteng
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* WhatsApp CTA */}
-              <div className="bg-gray-50 border border-gray-100 rounded-xl p-6">
-                <MessageCircle className="w-6 h-6 text-[#25D366] mb-3" />
-                <h3 className="font-bold text-[#0B1F3E] mb-2">WhatsApp</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                  For urgent placements or quick questions, message us on WhatsApp.
-                </p>
-                <a
-                  href="https://wa.me/27678182968"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full bg-[#25D366] hover:bg-[#1da851] text-white font-bold">
-                    <MessageCircle className="mr-2 w-4 h-4" />
-                    WhatsApp Us
-                  </Button>
-                </a>
-              </div>
-
-              {/* Landlord link */}
-              <div className="bg-[#0B1F3E] rounded-xl p-6">
-                <h3 className="font-bold text-white mb-2 text-sm">Are you a landlord?</h3>
-                <p className="text-white/60 text-sm leading-relaxed mb-4">
-                  If you have a property you&apos;d like to partner on, use our dedicated landlord
-                  submission form.
-                </p>
-                <Link href="/landlords#partner-form">
-                  <Button
-                    variant="outline"
-                    className="w-full border-[#C8A86C]/50 bg-transparent text-[#C8A86C] hover:bg-[#C8A86C] hover:text-[#0B1F3E] text-sm"
-                  >
-                    Submit a Property
-                    <ArrowRight className="ml-2 w-3 h-3" />
-                  </Button>
-                </Link>
-              </div>
+      <section style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <div className="wrap">
+          <div className="grid-3" style={{ borderTop: '1px solid var(--line)', paddingTop: 40, paddingBottom: 40 }}>
+            <div>
+              <span className="label label--brass">Pretoria HQ</span>
+              <p style={{ fontFamily: 'var(--f-display)', fontSize: 22, lineHeight: 1.4, margin: '12px 0 18px' }}>
+                140 Hilda Street<br />
+                Brooklyn, Pretoria<br />
+                Gauteng, 0181
+              </p>
+              <p style={{ color: 'var(--muted)', margin: 0, fontFamily: 'var(--f-mono)', fontSize: 12, letterSpacing: '0.06em' }}>Mon to Fri · 08h00 to 18h00</p>
             </div>
-
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <div className="mb-8">
-                <p className="text-[#C8A86C] font-semibold text-sm uppercase tracking-widest mb-2">
-                  Accommodation Request
-                </p>
-                <h2 className="text-2xl md:text-3xl font-black text-[#0B1F3E] leading-tight">
-                  Submit a Requirement
-                </h2>
-              </div>
-
-              <LocalFeedbackForm
-                id="request"
-                className="space-y-5 bg-gray-50 border border-gray-100 rounded-2xl p-8"
-                successTitle="Requirement received."
-                successMessage="Thanks. The form is working and would route this request to the Hostsy team in production. For the presentation, no data is stored."
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label
-                      htmlFor="c-name"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Full Name *
-                    </label>
-                    <Input id="c-name" name="name" placeholder="Your full name" required />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="c-company"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Company Name *
-                    </label>
-                    <Input id="c-company" name="company" placeholder="Your company" required />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label
-                      htmlFor="c-email"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Work Email *
-                    </label>
-                    <Input id="c-email" name="email" type="email" placeholder="you@company.com" required />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="c-phone"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Phone Number *
-                    </label>
-                    <Input id="c-phone" name="phone" type="tel" placeholder="+27 67 818 2968" required />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label
-                      htmlFor="c-location"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Preferred Location *
-                    </label>
-                    <Input
-                      id="c-location"
-                      name="location"
-                      placeholder="e.g. Waterkloof, Pretoria"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="c-bedrooms"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Bedrooms Required *
-                    </label>
-                    <Input
-                      id="c-bedrooms"
-                      name="bedrooms"
-                      type="number"
-                      placeholder="e.g. 2"
-                      min="1"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div>
-                    <label
-                      htmlFor="c-checkin"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Move-In Date *
-                    </label>
-                    <Input id="c-checkin" name="moveInDate" type="date" required />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="c-duration"
-                      className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                    >
-                      Estimated Duration *
-                    </label>
-                    <Input id="c-duration" name="duration" placeholder="e.g. 3 months" required />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="c-employees"
-                    className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                  >
-                    Number of Employees / Units
-                  </label>
-                  <Input
-                    id="c-employees"
-                    name="employees"
-                    placeholder="e.g. 1 executive, or 4-person team"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="c-notes"
-                    className="block text-sm font-semibold text-[#0B1F3E] mb-1.5"
-                  >
-                    Additional Requirements
-                  </label>
-                  <Textarea
-                    id="c-notes"
-                    name="notes"
-                    placeholder="Any specific requirements — location preferences, budget range, special needs, etc."
-                    rows={4}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full bg-[#C8A86C] hover:bg-[#b8965c] text-[#0B1F3E] font-bold py-3"
-                >
-                  Submit Requirement
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-
-                <p className="text-gray-400 text-xs text-center">
-                  We respond within 4 business hours. All enquiries are treated confidentially.
-                </p>
-              </LocalFeedbackForm>
+            <div>
+              <span className="label label--brass">Johannesburg office</span>
+              <p style={{ fontFamily: 'var(--f-display)', fontSize: 22, lineHeight: 1.4, margin: '12px 0 18px' }}>
+                The Marc<br />
+                129 Rivonia Road, Sandton<br />
+                Gauteng, 2196
+              </p>
+              <p style={{ color: 'var(--muted)', margin: 0, fontFamily: 'var(--f-mono)', fontSize: 12, letterSpacing: '0.06em' }}>Mon to Fri · 08h00 to 18h00</p>
+            </div>
+            <div>
+              <span className="label label--brass">Reach the team</span>
+              <p style={{ fontFamily: 'var(--f-display)', fontSize: 22, lineHeight: 1.4, margin: '12px 0 18px' }}>
+                <a href="mailto:admin@hostsy.co.za" style={{ color: 'inherit' }}>admin@hostsy.co.za</a><br />
+                <a href="tel:+27678182968" style={{ color: 'inherit' }}>+27 67 818 2968</a><br />
+                <a href="https://wa.me/27678182968" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>WhatsApp +27 67 818 2968</a>
+              </p>
+              <p style={{ color: 'var(--muted)', margin: 0, fontFamily: 'var(--f-mono)', fontSize: 12, letterSpacing: '0.06em' }}>24 hr duty line for active stays</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Response time guarantee */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            {[
-              {
-                stat: "4 hrs",
-                label: "Response time",
-                sub: "For all new accommodation requests",
-              },
-              {
-                stat: "48 hrs",
-                label: "Placement confirmation",
-                sub: "For most standard placements",
-              },
-              {
-                stat: "Same day",
-                label: "Urgent placements",
-                sub: "When availability allows",
-              },
-            ].map((item) => (
-              <div
-                key={item.stat}
-                className="bg-white border border-gray-100 rounded-xl p-8 shadow-sm"
-              >
-                <div className="text-3xl font-black text-[#C8A86C] mb-1">{item.stat}</div>
-                <div className="font-bold text-[#0B1F3E] text-lg mb-1">{item.label}</div>
-                <div className="text-gray-500 text-sm">{item.sub}</div>
-              </div>
+      <section className="section contact-form on-sand">
+        <div className="wrap">
+          <Kicker num="01" name="Submit an inquiry" />
+          <h2 className="h-1" style={{ margin: '24px 0 40px', maxWidth: '22ch' }}>What kind of inquiry are you sending?</h2>
+          <ContactForms />
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="02" name="Brochures and packs" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Download the relevant pack.</h2>
+              <p className="lede" style={{ marginTop: 28 }}>If you would rather circulate Hostsy internally first, the following PDFs cover the operational, financial and legal detail your team will ask for.</p>
+            </div>
+          </div>
+          <div className="grid-3" style={{ marginTop: 64 }}>
+            {DOWNLOADS.map(d => (
+              <a key={d.title} href="#" style={{ border: '1px solid var(--line)', padding: 28, display: 'flex', flexDirection: 'column', gap: 18, justifyContent: 'space-between', minHeight: 280 }}>
+                <div>
+                  <span className="label label--muted">{d.tag}</span>
+                  <h3 className="h-3" style={{ margin: '16px 0 14px' }}>{d.title}</h3>
+                  <p style={{ color: 'var(--muted)', margin: 0, fontSize: 14.5, lineHeight: 1.55 }}>{d.body}</p>
+                </div>
+                <LinkArr to="#">Download PDF</LinkArr>
+              </a>
             ))}
           </div>
         </div>
       </section>
-    </div>
+
+      <section className="section on-ink">
+        <div className="wrap-narrow" style={{ textAlign: 'center' }}>
+          <Kicker num="03" name="A note from the team" light />
+          <p className="quote" style={{ marginTop: 40 }}>
+            Every inquiry we receive lands in front of a person, not a queue. That person owns your reply until it is answered, and your stay until the keys come back.
+          </p>
+          <p className="attrib" style={{ justifyContent: 'center', display: 'flex', gap: 10 }}>
+            <b>Thandi M. Sithole</b> <span>· Chief Executive, Hostsy</span>
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
