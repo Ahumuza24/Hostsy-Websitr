@@ -33,7 +33,7 @@ export default function LocationsPage() {
   return (
     <main>
       <PageHeroBlock
-        index="05 / 07"
+        index="06 / 07"
         label="Locations"
         title={<>A curated map of corporate <em>Gauteng</em>.</>}
         sub="Hostsy operates 220 apartments across eight neighbourhoods in Pretoria and Johannesburg. Each address was chosen for proximity to business, embassies, international schools, transit or all four."

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Kicker, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
+import FAQ from '@/components/shared/FAQ';
 import Timeline from '@/components/dataviz/Timeline';
 
 export const metadata: Metadata = {
@@ -41,11 +42,22 @@ const GRADES = [
   { grade: 'Hostsy Family', img: DINING_IMG, sqm: '110 to 180 sqm', beds: '3 bed · 2 to 3 bath', price: 'from R 78,000 / mo', body: 'For executives relocating with family. Near international schools. Garden or pool where available.' },
 ];
 
+const FAQ_ITEMS = [
+  { q: 'What is the minimum length of stay?', a: 'Hostsy specialises in stays of 30 nights or longer. There is no upper limit. Our median placement runs just under seven months, and many assignments run multiple years for executive postings.' },
+  { q: 'How quickly can a placement go live?', a: 'From a complete brief, we present curated apartment options within 48 hours and can usually have an employee in keys within 5 to 10 working days. Same-week placements are possible when inventory matches.' },
+  { q: 'Do you invoice corporates directly?', a: 'Yes. Hostsy issues monthly VAT invoices that reference your purchase order. We support master service agreements and consolidated billing across employees, locations and stays.' },
+  { q: 'Are your apartments serviced?', a: 'Weekly housekeeping is included in every stay. Midweek refresh, linen change and additional services are available on request and billed according to the agreed service level.' },
+  { q: 'What happens during load shedding or water cuts?', a: 'Every Hostsy apartment includes backup power for essentials, routers and workstations, plus water backup where required. The goal is simple: employees should be able to keep working through local interruptions.' },
+  { q: 'Do you handle airport collection and onboarding?', a: 'Yes. We can coordinate airport pickup, key handover at the apartment, fibre verification, a welcome pack and local arrival support so the employee lands into a working home.' },
+  { q: 'Can you accommodate pets and families?', a: 'Many apartments are pet friendly, and we maintain larger family-ready units in areas such as Menlyn, Brooklyn, Lynnwood and Sandton, with proximity to schools and business districts where possible.' },
+  { q: 'How does Hostsy compare with corporate hotels?', a: 'For stays beyond three weeks, corporate housing usually gives companies more space, a proper kitchen, predictable billing and materially lower total cost than a comparable four-star hotel programme.' },
+];
+
 export default function CorporateHousingPage() {
   return (
     <main>
       <PageHeroBlock
-        index="02 / 07"
+        index="03 / 07"
         label="Corporate housing"
         title={<>Apartments engineered for <em>long stays</em>.</>}
         sub="Corporate housing is the operational alternative to hotels for any stay beyond a few weeks. A fully furnished apartment, professionally managed end to end, contracted business to business, billed monthly. This is the category Hostsy is built around."
@@ -206,8 +218,30 @@ export default function CorporateHousingPage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="section on-sand">
+        <div className="wrap">
+          <div className="editorial">
+            <div className="editorial__label">
+              <Kicker num="06" name="Frequently asked" />
+              <div className="brass-rule" style={{ marginTop: 28 }}></div>
+            </div>
+            <div>
+              <h2 className="h-1" style={{ margin: 0 }}>Questions corporate teams ask before they book.</h2>
+              <p className="lede" style={{ marginTop: 28 }}>
+                The practical answers procurement, HR, mobility and project leads usually need before
+                moving people into Hostsy apartments.
+              </p>
+            </div>
+          </div>
+          <div style={{ marginTop: 56 }}>
+            <FAQ items={FAQ_ITEMS} />
+          </div>
+        </div>
+      </section>
+
       <CtaBand
-        kicker={{ num: '06', name: 'Brief us' }}
+        kicker={{ num: '07', name: 'Brief us' }}
         headline={<span>One placement or one hundred. The brief is the start.</span>}
         sub="Tell us who is moving, where they are going and for how long. We come back inside 48 hours."
         primary={{ label: 'Request Accommodation', to: '/contact' }}

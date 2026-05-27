@@ -29,7 +29,7 @@ export default function AboutPage() {
   return (
     <main>
       <PageHeroBlock
-        index="06 / 07"
+        index="02 / 07"
         label="About Hostsy"
         title={<>An operator, <em>not</em> a marketplace.</>}
         sub="Hostsy was founded in 2019 to bring institutional discipline to corporate housing in South Africa. We do not list. We do not broker. We operate every apartment in our portfolio under one brand, one specification, one service standard."

@@ -82,10 +82,7 @@ export default function HomePage() {
         <div className="hero__inner wrap">
           <div className="rise-1">
             <h1 className="display hero__headline">
-              <em>Corporate Housing</em><br />
-              for Relocations,<br />
-              Project Teams &amp;<br />
-              Extended Stays
+              Corporate Housing, <em>Done Properly.</em>
             </h1>
           </div>
           <div className="rise-2">

@@ -52,7 +52,7 @@ export default function LandlordsPage() {
   return (
     <main>
       <PageHeroBlock
-        index="04 / 07"
+        index="05 / 07"
         label="For landlords"
         title={<>A <em>guaranteed</em> rent partnership for premium apartments.</>}
         sub="If you own a quality apartment in Brooklyn, Waterkloof, Arcadia, Lynnwood, Sandton or Rosebank, Hostsy will master lease it. You receive a fixed monthly rental for the term of the agreement. We carry every other line on the page."

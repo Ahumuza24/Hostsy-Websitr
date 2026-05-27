@@ -52,7 +52,7 @@ export default function HRMobilityPage() {
   return (
     <main>
       <PageHeroBlock
-        index="03 / 07"
+        index="04 / 07"
         label="For HR & mobility teams"
         title={<>Relocation, <em>without</em> the relocation chaos.</>}
         sub="A standing portfolio of executive apartments, a single point of contact, and a procurement ready operator that fits inside your global mobility programme. Built specifically for the teams who carry the operational weight of every move."
