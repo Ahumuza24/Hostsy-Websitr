@@ -20,7 +20,7 @@ const PRINCIPLES = [
 ];
 
 const TEAM = [
-  { name: 'Thandi M. Sithole', role: 'Chief Executive', bio: 'Former GM at Protea Hotels. Built Hostsy from 12 apartments to 220. Obsessed with operational systems, not property.' },
+  { name: 'Kago Mangoejane', role: 'Chief Executive Officer', bio: 'Former GM at Protea Hotels. Built Hostsy from 12 apartments to 220. Obsessed with operational systems, not property.' },
   { name: 'Pieter van der Berg', role: 'Chief Operating Officer', bio: 'Ex Marriott operations. Responsible for every apartment in the portfolio, every SLA, every maintenance ticket.' },
   { name: 'Anika Roussouw', role: 'Head of Client Partnerships', bio: 'Former global mobility lead at a Big 4 firm. The person who knows exactly what an HR director needs before they ask.' },
 ];

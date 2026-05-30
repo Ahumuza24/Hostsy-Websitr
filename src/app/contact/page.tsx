@@ -99,7 +99,7 @@ export default function ContactPage() {
             Every inquiry we receive lands in front of a person, not a queue. That person owns your reply until it is answered, and your stay until the keys come back.
           </p>
           <p className="attrib" style={{ justifyContent: 'center', display: 'flex', gap: 10 }}>
-            <b>Thandi M. Sithole</b> <span>· Chief Executive, Hostsy</span>
+            <b>Kago Mangoejane</b> <span>· Chief Executive Officer, Hostsy</span>
           </p>
         </div>
       </section>

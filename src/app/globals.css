@@ -197,6 +197,8 @@
 /* Smooth scroll for anchor links */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -229,6 +231,9 @@ body {
   background: var(--ivory);
   color: var(--ink);
   font-family: var(--f-sans);
+  width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .display { font-family: var(--f-display); font-weight: 400; letter-spacing: -0.02em; line-height: 0.98; font-feature-settings: "liga", "kern", "calt"; }
@@ -302,7 +307,16 @@ body {
 .nav__burger span::after { top: 7px; }
 @media (max-width: 960px) { .nav__links, .nav__cta .btn { display: none; } .nav__burger { display: inline-flex; } }
 .mobile-menu { position: fixed; inset: 0; z-index: 70; background: var(--ink); color: var(--ivory); display: flex; flex-direction: column; padding: 96px var(--gutter) var(--gutter); }
-.mobile-menu a { font-family: var(--f-display); font-size: 36px; padding: 14px 0; border-bottom: 1px solid var(--line-on-ink); }
+.mobile-menu > a { font-family: var(--f-display); font-size: 36px; padding: 14px 0; border-bottom: 1px solid var(--line-on-ink); }
+.mobile-menu .btn {
+  width: min(100%, 320px);
+  justify-content: center;
+  font-family: var(--f-sans);
+  font-size: 15px;
+  line-height: 1;
+  border-bottom: 0;
+  padding: 0 24px;
+}
 .mobile-menu .close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line-on-ink); display: grid; place-items: center; }
 
 .hero { position: relative; min-height: 100vh; background: var(--ink); color: var(--ivory); overflow: hidden; display: flex; flex-direction: column; isolation: isolate; }
@@ -441,7 +455,12 @@ body {
 .process .step .num { font-family: var(--f-display); font-weight: 300; font-size: 60px; line-height: 1; color: var(--brass); letter-spacing: -0.04em; }
 .process .step h4 { font-family: var(--f-display); font-weight: 400; font-size: 22px; margin: 0; letter-spacing: -0.01em; }
 .process .step p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
-@media (max-width: 1100px) { .process { grid-template-columns: 1fr 1fr; } .process .step { border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 0; } }
+@media (max-width: 1100px) {
+  .process { grid-template-columns: 1fr 1fr; }
+  .process .step { border-right: 0; border-bottom: 1px solid var(--line); padding: 28px 0; }
+  .process .step:not(:first-child),
+  .process .step:hover { padding-left: 0; }
+}
 @media (max-width: 700px) { .process, .process--compact { grid-template-columns: 1fr; } }
 
 .aptcard { display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: transform .35s cubic-bezier(.16,.84,.3,1), color .25s ease; }
@@ -594,10 +613,10 @@ body {
 .reveal.is-in { opacity: 1; transform: translateY(0); }
 .reveal-fade { opacity: 0; transition: opacity 1s ease; }
 .reveal-fade.is-in { opacity: 1; }
-.reveal-left { opacity: 0; transform: translateX(-34px); transition: opacity .9s cubic-bezier(.16,.84,.3,1), transform .9s cubic-bezier(.16,.84,.3,1); }
-.reveal-left.is-in { opacity: 1; transform: translateX(0); }
-.reveal-right { opacity: 0; transform: translateX(34px); transition: opacity .9s cubic-bezier(.16,.84,.3,1), transform .9s cubic-bezier(.16,.84,.3,1); }
-.reveal-right.is-in { opacity: 1; transform: translateX(0); }
+.reveal-left { opacity: 0; transform: translateY(24px) scale(.992); transition: opacity .9s cubic-bezier(.16,.84,.3,1), transform .9s cubic-bezier(.16,.84,.3,1); }
+.reveal-left.is-in { opacity: 1; transform: translateY(0) scale(1); }
+.reveal-right { opacity: 0; transform: translateY(24px) scale(.992); transition: opacity .9s cubic-bezier(.16,.84,.3,1), transform .9s cubic-bezier(.16,.84,.3,1); }
+.reveal-right.is-in { opacity: 1; transform: translateY(0) scale(1); }
 .reveal-scale { opacity: 0; transform: translateY(22px) scale(.985); transition: opacity .9s cubic-bezier(.16,.84,.3,1), transform .9s cubic-bezier(.16,.84,.3,1); }
 .reveal-scale.is-in { opacity: 1; transform: translateY(0) scale(1); }
 .reveal-stagger > * { opacity: 0; transform: translateY(22px); transition: opacity .8s cubic-bezier(.16,.84,.3,1), transform .8s cubic-bezier(.16,.84,.3,1); }

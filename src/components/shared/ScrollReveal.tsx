@@ -69,9 +69,7 @@ export default function ScrollReveal() {
           return;
         }
 
-        const variant = ['reveal', 'reveal-left', 'reveal-right', 'reveal-scale'][
-          index % 4
-        ];
+        const variant = ['reveal', 'reveal-scale'][index % 2];
         element.classList.add(variant);
       });
 

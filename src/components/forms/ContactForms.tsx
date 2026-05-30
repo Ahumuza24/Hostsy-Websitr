@@ -12,13 +12,13 @@ function CorporateForm({ form, upd }: { form: FormState; upd: Updater }) {
   return (
     <>
       <div className="form-row">
-        <div className="field"><label>Your name</label><input type="text" required value={form.name || ''} onChange={upd('name')} placeholder="Anika Roussouw" /></div>
-        <div className="field"><label>Company</label><input type="text" required value={form.company || ''} onChange={upd('company')} placeholder="Saxon Capital" /></div>
+        <div className="field"><label htmlFor="corporate-name">Your name</label><input id="corporate-name" type="text" required value={form.name || ''} onChange={upd('name')} placeholder="Anika Roussouw" /></div>
+        <div className="field"><label htmlFor="corporate-company">Company</label><input id="corporate-company" type="text" required value={form.company || ''} onChange={upd('company')} placeholder="Saxon Capital" /></div>
       </div>
       <div className="form-row">
-        <div className="field"><label>Work email</label><input type="email" required value={form.email || ''} onChange={upd('email')} placeholder="anika@saxon.com" /></div>
-        <div className="field"><label>Role</label>
-          <select required value={form.role || ''} onChange={upd('role')}>
+        <div className="field"><label htmlFor="corporate-email">Work email</label><input id="corporate-email" type="email" required value={form.email || ''} onChange={upd('email')} placeholder="anika@saxon.com" /></div>
+        <div className="field"><label htmlFor="corporate-role">Role</label>
+          <select id="corporate-role" required value={form.role || ''} onChange={upd('role')}>
             <option value="">Choose a role</option>
             <option>HR director</option><option>Global mobility lead</option><option>Talent acquisition</option>
             <option>Operations / project director</option><option>Procurement</option><option>Executive assistant</option><option>Other</option>
@@ -26,33 +26,33 @@ function CorporateForm({ form, upd }: { form: FormState; upd: Updater }) {
         </div>
       </div>
       <div className="form-row">
-        <div className="field"><label>Type of placement</label>
-          <select required value={form.kind || ''} onChange={upd('kind')}>
+        <div className="field"><label htmlFor="corporate-kind">Type of placement</label>
+          <select id="corporate-kind" required value={form.kind || ''} onChange={upd('kind')}>
             <option value="">Choose a type</option>
             <option>Executive relocation</option><option>Project team housing</option><option>Diplomatic placement</option>
             <option>Extended stay specialist</option><option>Bulk corporate stays</option><option>Expat hire onboarding</option>
           </select>
         </div>
-        <div className="field"><label>Number of apartments</label><input type="number" min="1" required value={form.count || ''} onChange={upd('count')} placeholder="3" /></div>
+        <div className="field"><label htmlFor="corporate-count">Number of apartments</label><input id="corporate-count" type="number" min="1" required value={form.count || ''} onChange={upd('count')} placeholder="3" /></div>
       </div>
       <div className="form-row">
-        <div className="field"><label>Preferred location</label>
-          <select value={form.loc || ''} onChange={upd('loc')}>
+        <div className="field"><label htmlFor="corporate-location">Preferred location</label>
+          <select id="corporate-location" value={form.loc || ''} onChange={upd('loc')}>
             <option value="">Any in Gauteng</option>
             <option>Waterkloof</option><option>Brooklyn</option><option>Arcadia</option><option>Lynnwood</option>
             <option>Menlyn</option><option>Hatfield</option><option>Sandton</option><option>Rosebank</option>
           </select>
         </div>
-        <div className="field"><label>Length of stay</label>
-          <select value={form.length || ''} onChange={upd('length')}>
+        <div className="field"><label htmlFor="corporate-length">Length of stay</label>
+          <select id="corporate-length" value={form.length || ''} onChange={upd('length')}>
             <option value="">Choose a length</option>
             <option>1 to 3 months</option><option>3 to 6 months</option><option>6 to 12 months</option>
             <option>12 to 24 months</option><option>24 months or longer</option>
           </select>
         </div>
       </div>
-      <div className="field"><label>Tell us about the brief</label>
-        <textarea value={form.notes || ''} onChange={upd('notes')} placeholder="Two senior executives relocating from Frankfurt for 18 months..." />
+      <div className="field"><label htmlFor="corporate-notes">Tell us about the brief</label>
+        <textarea id="corporate-notes" value={form.notes || ''} onChange={upd('notes')} placeholder="Two senior executives relocating from Frankfurt for 18 months..." />
       </div>
     </>
   );
@@ -62,14 +62,14 @@ function LandlordForm({ form, upd }: { form: FormState; upd: Updater }) {
   return (
     <>
       <div className="form-row">
-        <div className="field"><label>Your name</label><input type="text" required value={form.name || ''} onChange={upd('name')} placeholder="Pieter de Klerk" /></div>
-        <div className="field"><label>Contact number</label><input type="tel" required value={form.phone || ''} onChange={upd('phone')} placeholder="+27 82 000 0000" /></div>
+        <div className="field"><label htmlFor="landlord-name">Your name</label><input id="landlord-name" type="text" required value={form.name || ''} onChange={upd('name')} placeholder="Pieter de Klerk" /></div>
+        <div className="field"><label htmlFor="landlord-phone">Contact number</label><input id="landlord-phone" type="tel" required value={form.phone || ''} onChange={upd('phone')} placeholder="+27 82 000 0000" /></div>
       </div>
-      <div className="field"><label>Email</label><input type="email" required value={form.email || ''} onChange={upd('email')} /></div>
+      <div className="field"><label htmlFor="landlord-email">Email</label><input id="landlord-email" type="email" required value={form.email || ''} onChange={upd('email')} /></div>
       <div className="form-row">
-        <div className="field"><label>Property address</label><input type="text" required value={form.address || ''} onChange={upd('address')} placeholder="Unit 802, 140 Hilda St, Brooklyn" /></div>
-        <div className="field"><label>Suburb</label>
-          <select required value={form.suburb || ''} onChange={upd('suburb')}>
+        <div className="field"><label htmlFor="landlord-address">Property address</label><input id="landlord-address" type="text" required value={form.address || ''} onChange={upd('address')} placeholder="Unit 802, 140 Hilda St, Brooklyn" /></div>
+        <div className="field"><label htmlFor="landlord-suburb">Suburb</label>
+          <select id="landlord-suburb" required value={form.suburb || ''} onChange={upd('suburb')}>
             <option value="">Choose a suburb</option>
             <option>Waterkloof</option><option>Brooklyn</option><option>Arcadia</option><option>Lynnwood</option>
             <option>Sandton</option><option>Rosebank</option><option>Other</option>
@@ -77,16 +77,16 @@ function LandlordForm({ form, upd }: { form: FormState; upd: Updater }) {
         </div>
       </div>
       <div className="form-row">
-        <div className="field"><label>Bedrooms</label>
-          <select required value={form.bed || ''} onChange={upd('bed')}>
+        <div className="field"><label htmlFor="landlord-bedrooms">Bedrooms</label>
+          <select id="landlord-bedrooms" required value={form.bed || ''} onChange={upd('bed')}>
             <option value="">Choose</option><option>Studio</option><option>1 bed</option><option>2 bed</option><option>3 bed</option><option>4 bed+</option>
           </select>
         </div>
-        <div className="field"><label>Approximate size (sqm)</label><input type="number" required value={form.sqm || ''} onChange={upd('sqm')} placeholder="84" /></div>
-        <div className="field"><label>Monthly expectation</label><input type="text" value={form.expect || ''} onChange={upd('expect')} placeholder="R 38,000" /></div>
+        <div className="field"><label htmlFor="landlord-size">Approximate size (sqm)</label><input id="landlord-size" type="number" required value={form.sqm || ''} onChange={upd('sqm')} placeholder="84" /></div>
+        <div className="field"><label htmlFor="landlord-expectation">Monthly expectation</label><input id="landlord-expectation" type="text" value={form.expect || ''} onChange={upd('expect')} placeholder="R 38,000" /></div>
       </div>
-      <div className="field"><label>Anything we should know about the property</label>
-        <textarea value={form.notes || ''} onChange={upd('notes')} placeholder="Recently renovated, backup power, two parking bays..." />
+      <div className="field"><label htmlFor="landlord-notes">Anything we should know about the property</label>
+        <textarea id="landlord-notes" value={form.notes || ''} onChange={upd('notes')} placeholder="Recently renovated, backup power, two parking bays..." />
       </div>
     </>
   );
@@ -96,11 +96,11 @@ function GeneralForm({ form, upd }: { form: FormState; upd: Updater }) {
   return (
     <>
       <div className="form-row">
-        <div className="field"><label>Your name</label><input type="text" required value={form.name || ''} onChange={upd('name')} /></div>
-        <div className="field"><label>Email</label><input type="email" required value={form.email || ''} onChange={upd('email')} /></div>
+        <div className="field"><label htmlFor="general-name">Your name</label><input id="general-name" type="text" required value={form.name || ''} onChange={upd('name')} /></div>
+        <div className="field"><label htmlFor="general-email">Email</label><input id="general-email" type="email" required value={form.email || ''} onChange={upd('email')} /></div>
       </div>
-      <div className="field"><label>Subject</label><input type="text" required value={form.subject || ''} onChange={upd('subject')} placeholder="Press inquiry, partnership, etc." /></div>
-      <div className="field"><label>Message</label><textarea value={form.message || ''} onChange={upd('message')} /></div>
+      <div className="field"><label htmlFor="general-subject">Subject</label><input id="general-subject" type="text" required value={form.subject || ''} onChange={upd('subject')} placeholder="Press inquiry, partnership, etc." /></div>
+      <div className="field"><label htmlFor="general-message">Message</label><textarea id="general-message" value={form.message || ''} onChange={upd('message')} /></div>
     </>
   );
 }

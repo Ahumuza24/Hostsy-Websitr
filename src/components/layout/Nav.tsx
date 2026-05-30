@@ -28,7 +28,7 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileState, setMobileState] = useState({ open: false, path: '' });
   const pathname = usePathname();
-  const mobile = mobileState.open && mobileState.path === pathname;
+  const mobile = mobileState.open;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

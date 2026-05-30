@@ -51,7 +51,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <ScrollReveal />
         <Nav />
-        <main>{children}</main>
+        {children}
         <Footer />
         <WhatsAppPill />
       </body>

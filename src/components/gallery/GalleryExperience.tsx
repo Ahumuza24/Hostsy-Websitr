@@ -42,7 +42,7 @@ const galleryImages: GalleryImage[] = [
     title: "Corporate Lounge Setting",
     location: "Sandton",
     category: "Living",
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6d5b8c48?auto=format&fit=crop&w=1400&q=82",
+    src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=82",
     alt: "Modern furnished apartment lounge",
     detail: "Designed for decompression after long assignment days without feeling temporary.",
   },
@@ -114,7 +114,7 @@ export default function GalleryExperience() {
   };
 
   return (
-    <div className="overflow-x-hidden bg-white">
+    <main className="overflow-x-hidden bg-white">
       <section className="relative min-h-[78vh] overflow-hidden bg-[#07182f] pt-28 pb-16 text-white">
         <div className="absolute inset-0">
           <Image
@@ -335,6 +335,6 @@ export default function GalleryExperience() {
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
