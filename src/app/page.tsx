@@ -2,11 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Kicker, CTA, LinkArr, Stat, Testimonial, LogosRow, CtaBand } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Corporate Housing for Relocations & Extended Stays in Gauteng',
-  description: 'Premium furnished apartments across Pretoria and Johannesburg. Fully managed corporate housing for relocations, executive placements, project teams, and extended stays.',
-};
+export const metadata: Metadata = createPageMetadata('/');
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=2000&q=80';
 const LIVING_IMG = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80';

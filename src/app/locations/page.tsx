@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Kicker, CTA, Stat, PageHeroBlock } from '@/components/shared/primitives';
 import GautengMap from '@/components/dataviz/GautengMap';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Locations — Pretoria & Johannesburg Corporate Housing | Hostsy',
-  description: '220 apartments across 8 neighbourhoods in Gauteng. Waterkloof, Brooklyn, Arcadia, Sandton, Rosebank and more. Premium corporate housing across Pretoria and Johannesburg.',
-};
+export const metadata: Metadata = createPageMetadata('/locations');
 
 const PTA_SKYLINE = 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=2000&q=80';
 const LIVING_IMG = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80';

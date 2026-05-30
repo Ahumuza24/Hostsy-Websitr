@@ -2,11 +2,9 @@ import { Fragment } from 'react';
 import type { Metadata } from 'next';
 import { Kicker, Stat, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'For Landlords — Guaranteed Rent Partnership | Hostsy',
-  description: 'Master lease your premium apartment to Hostsy. Fixed guaranteed monthly rent. No vacancy risk, no tenant risk, no maintenance burden. Professional corporate tenants only.',
-};
+export const metadata: Metadata = createPageMetadata('/landlords');
 
 const BUILDING_IMG = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=80';
 

@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import GalleryExperience from "@/components/gallery/GalleryExperience";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gallery — Premium Corporate Apartments in Gauteng",
-  description:
-    "Browse Hostsy's premium furnished apartments, executive suites, work-ready spaces, and Gauteng corporate housing locations.",
-};
+export const metadata: Metadata = createPageMetadata("/gallery");
 
 export default function GalleryPage() {
   return <GalleryExperience />;

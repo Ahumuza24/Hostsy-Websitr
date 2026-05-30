@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Kicker, Stat, CtaBand, PageHeroBlock } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'About Hostsy — An Operator, Not a Marketplace',
-  description: 'Hostsy was founded in 2019 to bring institutional discipline to corporate housing in South Africa. We operate every apartment under one brand, one specification, one service standard.',
-};
+export const metadata: Metadata = createPageMetadata('/about');
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=2000&q=80';
 const WORKSPACE_IMG = 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=900&q=80';

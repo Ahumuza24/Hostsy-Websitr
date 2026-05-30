@@ -3,11 +3,9 @@ import { Kicker, CtaBand, PageHeroBlock, Spec } from '@/components/shared/primit
 import { IconBadge } from '@/components/shared/Icons';
 import FAQ from '@/components/shared/FAQ';
 import Timeline from '@/components/dataviz/Timeline';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Corporate Housing — Apartments Engineered for Long Stays | Hostsy',
-  description: 'Hostsy corporate housing: fully furnished apartments, professionally managed end to end, contracted business to business, billed monthly. The category for 30 nights to 36 months.',
-};
+export const metadata: Metadata = createPageMetadata('/corporate-housing');
 
 const WORKSPACE_IMG = 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=2000&q=80';
 const CITY_NIGHT = 'https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=2000&q=80';

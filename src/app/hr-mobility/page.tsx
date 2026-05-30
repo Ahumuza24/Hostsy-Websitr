@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Kicker, Testimonial, CtaBand, PageHeroBlock } from '@/components/shared/primitives';
 import { IconBadge } from '@/components/shared/Icons';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'For HR & Mobility Teams — Relocation Without the Chaos | Hostsy',
-  description: 'A standing portfolio of executive apartments, a single point of contact, and a procurement ready operator that fits inside your global mobility programme.',
-};
+export const metadata: Metadata = createPageMetadata('/hr-mobility');
 
 const RECEPTION_IMG = 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80';
 const MEETING_IMG = 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80';

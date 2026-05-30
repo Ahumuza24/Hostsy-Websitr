@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { Kicker, LinkArr, PageHeroBlock } from '@/components/shared/primitives';
 import ContactForms from '@/components/forms/ContactForms';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Contact Hostsy — Request Accommodation or Submit a Property',
-  description: 'Tell us about your placement or property. Every inquiry receives a response from a named person, inside one working day.',
-};
+export const metadata: Metadata = createPageMetadata('/contact');
 
 const DOWNLOADS = [
   { tag: 'PDF · 12 pages · 3.4 MB', title: 'Corporate housing pack', body: 'Pricing, inclusions, service levels, sample MSA and case studies. The pack for HR, mobility and procurement.' },
